@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MKMThreeProbe'
-  s.version          = '0.1.0'
+  s.version          = '0.0.1'
   s.summary          = 'A short description of MKMThreeProbe.'
 
 # This description is used to generate tags and improve search results.
@@ -28,15 +28,174 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/lovexiaoxia/MKMThreeProbe.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '14.0'
 
   s.source_files = 'MKMThreeProbe/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'MKMThreeProbe' => ['MKMThreeProbe/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'MKMThreeProbe' => ['MKMThreeProbe/Assets/*.png']
+  }
+  
+  s.subspec 'ConnectManager' do |ss|
+    ss.source_files = 'MKMThreeProbe/Classes/ConnectManager/**'
+    
+    ss.dependency 'MKBaseModuleLibrary'
+    
+    ss.dependency 'MKMThreeProbe/SDK'
+  end
+  
+  s.subspec 'CTMediator' do |ss|
+    ss.source_files = 'MKMThreeProbe/Classes/CTMediator/**'
+    
+    ss.dependency 'CTMediator'
+  end
+  
+  s.subspec 'SDK' do |ss|
+    ss.source_files = 'MKMThreeProbe/Classes/SDK/**'
+    ss.dependency 'MKBaseBleModule'
+  end
+  
+  s.subspec 'Target' do |ss|
+    ss.source_files = 'MKMThreeProbe/Classes/Target/**'
+    
+    ss.dependency 'MKMThreeProbe/Functions'
+  end
+  
+  s.subspec 'Functions' do |ss|
+    
+    ss.subspec 'AboutPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/AboutPage/Controller/**'
+      end
+    end
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+    ss.subspec 'AdvConfigPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/AdvConfigPage/Controller/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/AdvConfigPage/Model'
+        ssss.dependency 'MKMThreeProbe/Functions/AdvConfigPage/View'
+      end
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/AdvConfigPage/Model/**'
+      end
+      sss.subspec 'View' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/AdvConfigPage/View/**'
+      end
+    end
+
+    ss.subspec 'ProbePage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/ProbePage/Controller/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/ProbePage/View'
+      end
+      sss.subspec 'View' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/ProbePage/View/**'
+      end
+    end
+
+    ss.subspec 'QuickSwitchPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/QuickSwitchPage/Controller/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/QuickSwitchPage/Model'
+      end
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/QuickSwitchPage/Model/**'
+      end
+    end
+
+    ss.subspec 'ScanPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/ScanPage/Controller/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/ScanPage/Model'
+        ssss.dependency 'MKMThreeProbe/Functions/ScanPage/View'
+
+        ssss.dependency 'MKMThreeProbe/Functions/TabBarPage/Controller'
+        ssss.dependency 'MKMThreeProbe/Functions/AboutPage/Controller'
+      end
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/ScanPage/Model/**'
+      end
+      sss.subspec 'View' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/ScanPage/View/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/ScanPage/Model'
+      end
+    end
+
+    ss.subspec 'SensorConfigPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/SensorConfigPage/Controller/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/SensorConfigPage/Model'
+      end
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/SensorConfigPage/Model/**'
+      end
+    end
+    
+    ss.subspec 'SensorPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/SensorPage/Controller/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/SensorPage/View'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/ProbePage'
+      end
+      sss.subspec 'View' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/SensorPage/View/**'
+      end
+    end
+    
+    ss.subspec 'SettingPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/SettingPage/Controller/**'
+
+        ssss.dependency 'MKMThreeProbe/Functions/SensorConfigPage/Controller'
+        ssss.dependency 'MKMThreeProbe/Functions/QuickSwitchPage/Controller'
+        ssss.dependency 'MKMThreeProbe/Functions/UpdatePage/Controller'
+        ssss.dependency 'MKMThreeProbe/Functions/AdvConfigPage/Controller'
+      end
+    end
+
+    ss.subspec 'TabBarPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/TabBarPage/Controller/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/TabBarPage/Model'
+
+        ssss.dependency 'MKMThreeProbe/Functions/SensorPage/Controller'
+        ssss.dependency 'MKMThreeProbe/Functions/SettingPage/Controller'
+      end
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/TabBarPage/Model/**'
+      end
+    end
+    
+    ss.subspec 'UpdatePage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/UpdatePage/Controller/**'
+        
+        ssss.dependency 'MKMThreeProbe/Functions/UpdatePage/Model'
+      end
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKMThreeProbe/Classes/Functions/UpdatePage/Model/**'
+      end
+    end
+
+    ss.dependency 'MKMThreeProbe/ConnectManager'
+    ss.dependency 'MKMThreeProbe/SDK'
+    ss.dependency 'MKMThreeProbe/CTMediator'
+    
+    ss.dependency 'MKBaseModuleLibrary'
+    ss.dependency 'MKCustomUIModule'
+    ss.dependency 'MKBeaconXCustomUI'
+    ss.dependency 'HHTransition'
+    ss.dependency 'MLInputDodger'
+    ss.dependency 'iOSDFULibrary',    '4.13.0'
+  end
+  
 end
