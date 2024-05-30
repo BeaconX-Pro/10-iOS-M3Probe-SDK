@@ -89,7 +89,6 @@ static dispatch_once_t onceToken;
 - (void)MKBLEBaseCentralManagerDiscoverPeripheral:(CBPeripheral *)peripheral
                                 advertisementData:(NSDictionary<NSString *,id> *)advertisementData
                                              RSSI:(NSNumber *)RSSI {
-    NSLog(@"%@",advertisementData);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSDictionary *dic = [self parseModelWithRssi:RSSI advDic:advertisementData peripheral:peripheral];
         if (!MKValidDict(dic)) {
@@ -724,17 +723,19 @@ static dispatch_once_t onceToken;
         return @{};
     }
     
+    NSLog(@"%@",advDic);
     
     BOOL waterLeakage = [[content substringWithRange:NSMakeRange(2, 2)] isEqualToString:@"01"];
     
-    BOOL supportT = [[content substringWithRange:NSMakeRange(4, 4)].uppercaseString isEqualToString:@"FFFF"];
+    BOOL supportT = ![[content substringWithRange:NSMakeRange(4, 4)].uppercaseString isEqualToString:@"FFFF"];
     NSNumber *tempT = [MKBLEBaseSDKAdopter signedHexTurnString:[content substringWithRange:NSMakeRange(4, 4)]];
     NSString *temperature = [NSString stringWithFormat:@"%.1f",[tempT integerValue] * 0.1];
     
-    BOOL supportH = [[content substringWithRange:NSMakeRange(8, 4)].uppercaseString isEqualToString:@"FFFF"];
+    BOOL supportH = ![[content substringWithRange:NSMakeRange(8, 4)].uppercaseString isEqualToString:@"FFFF"];
     NSNumber *tempH = [MKBLEBaseSDKAdopter signedHexTurnString:[content substringWithRange:NSMakeRange(8, 4)]];
     NSString *humidity = [NSString stringWithFormat:@"%.1f",[tempH integerValue] * 0.1];
     
+    BOOL supportTof = ![[content substringWithRange:NSMakeRange(12, 4)].uppercaseString isEqualToString:@"FFFF"];
     NSString *tofRanging = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(12, 4)];
     
     [self logToLocal:[@"扫描到设备:" stringByAppendingString:content]];
@@ -749,6 +750,7 @@ static dispatch_once_t onceToken;
         @"temperature":temperature,
         @"supportH":@(supportH),
         @"humidity":humidity,
+        @"supportTof":@(supportTof),
         @"tofRanging":tofRanging,
         @"connectable":advDic[CBAdvertisementDataIsConnectable],
     };

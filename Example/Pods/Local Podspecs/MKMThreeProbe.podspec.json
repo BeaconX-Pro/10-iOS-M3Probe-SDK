@@ -18,7 +18,6 @@
   "platforms": {
     "ios": "14.0"
   },
-  "source_files": "MKMThreeProbe/Classes/**/*",
   "resource_bundles": {
     "MKMThreeProbe": [
       "MKMThreeProbe/Assets/*.png"

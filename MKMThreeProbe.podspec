@@ -29,8 +29,6 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '14.0'
-
-  s.source_files = 'MKMThreeProbe/Classes/**/*'
   
   s.resource_bundles = {
     'MKMThreeProbe' => ['MKMThreeProbe/Assets/*.png']

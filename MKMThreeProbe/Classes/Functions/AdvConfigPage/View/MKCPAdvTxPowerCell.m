@@ -103,11 +103,11 @@
     if (sliderValue >= 7 && sliderValue < 8) {
         return @"3dBm";
     }
-    if (sliderValue >= 8 && sliderValue < 9) {
+    if (sliderValue >= 8 && sliderValue <= 9) {
         return @"4dBm";
     }
     
-    return @"8dBm";
+    return @"4dBm";
 }
 
 #pragma mark - setter

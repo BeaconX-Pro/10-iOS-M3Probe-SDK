@@ -25,11 +25,12 @@
 #import "MKCustomUIAdopter.h"
 #import "MKProgressView.h"
 #import "MKTableSectionLineHeader.h"
-#import "MKAlertController.h"
+#import "MKAlertView.h"
 
 #import "MKCPScanFilterView.h"
 #import "MKCPScanSearchButton.h"
 
+#import "MKBLEBaseCentralManager.h"
 
 #import "MKCPSDK.h"
 
@@ -46,6 +47,8 @@ static CGFloat const offset_X = 15.f;
 static CGFloat const searchButtonHeight = 40.f;
 
 static NSTimeInterval const kRefreshInterval = 0.5f;
+
+static NSString *const localPasswordKey = @"mk_cp_passwordKey";
 
 @interface MKCPScanViewController ()<UITableViewDelegate,
 UITableViewDataSource,
@@ -73,7 +76,8 @@ MKCPTabBarControllerDelegate>
 //扫描到新的设备不能立即刷新列表，降低刷新频率
 @property (nonatomic, assign)BOOL isNeedRefresh;
 
-@property (nonatomic, strong)UITextField *passwordField;
+/// 保存当前密码输入框ascii字符部分
+@property (nonatomic, copy)NSString *asciiText;
 
 @end
 
@@ -111,7 +115,7 @@ MKCPTabBarControllerDelegate>
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MKCPScanInfoCell *cell = [MKCPScanInfoCell initCellWithTableView:tableView];
-    cell.dataModel = self.dataList[indexPath.section];
+    cell.dataModel = self.dataList[indexPath.row];
     cell.delegate = self;
     return cell;
 }
@@ -119,7 +123,18 @@ MKCPTabBarControllerDelegate>
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140.f;
+    MKCPScanInfoCellModel *cellModel = self.dataList[indexPath.row];
+    CGFloat height = 80.f;
+    if (cellModel.supportT) {
+        height += 22.f;
+    }
+    if (cellModel.supportH) {
+        height += 22.f;
+    }
+    if (cellModel.supportTof) {
+        height += 22.f;
+    }
+    return height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -186,6 +201,16 @@ MKCPTabBarControllerDelegate>
 
 #pragma mark - event method
 - (void)refreshButtonPressed {
+    if ([MKBLEBaseCentralManager shared].centralManager.state == CBManagerStateUnauthorized) {
+        //用户未授权
+        [self showAuthorizationAlert];
+        return;
+    }
+    if ([MKBLEBaseCentralManager shared].centralManager.state == CBManagerStatePoweredOff) {
+        //用户关闭了系统蓝牙
+        [self showBLEDisable];
+        return;
+    }
     if ([MKCPCentralManager shared].centralStatus != mk_cp_centralManagerStatusEnable) {
         [self.view showCentralToast:@"The current system of bluetooth is not available!"];
         return;
@@ -203,22 +228,6 @@ MKCPTabBarControllerDelegate>
     [self.titleLabel setText:[NSString stringWithFormat:@"DEVICE(%@)",[NSString stringWithFormat:@"%ld",(long)self.dataList.count]]];
     [self.refreshIcon.layer addAnimation:[MKCustomUIAdopter refreshAnimation:2.f] forKey:@"mk_refreshAnimationKey"];
     [[MKCPCentralManager shared] startScan];
-}
-
-#pragma mark - notice method
-- (void)showCentralStatus{
-    if ([MKCPCentralManager shared].centralStatus != mk_cp_centralManagerStatusEnable) {
-        NSString *msg = @"The current system of bluetooth is not available!";
-        MKAlertController *alertController = [MKAlertController alertControllerWithTitle:@"Dismiss"
-                                                                                 message:msg
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:moreAction];
-        
-        [self presentViewController:alertController animated:YES completion:nil];
-        return;
-    }
-    [self refreshButtonPressed];
 }
 
 #pragma mark - 刷新
@@ -374,7 +383,7 @@ MKCPTabBarControllerDelegate>
 }
 
 - (void)connectDeviceWithPassword:(CBPeripheral *)peripheral{
-    NSString *password = self.passwordField.text;
+    NSString *password = self.asciiText;
     if (!ValidStr(password) || password.length > 16) {
         [self.view showCentralToast:@"Password incorrect!"];
         return;
@@ -385,7 +394,7 @@ MKCPTabBarControllerDelegate>
     [[MKCPConnectManager shared] connectPeripheral:peripheral password:password progressBlock:^(float progress) {
         [progressView setProgress:(progress * 0.01) animated:NO];
     } sucBlock:^{
-        [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"mk_cp_localPasswordKey"];
+        [[NSUserDefaults standardUserDefaults] setObject:password forKey:localPasswordKey];
         [progressView dismiss];
         [self performSelector:@selector(pushTabBarPage) withObject:nil afterDelay:0.3f];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -410,56 +419,35 @@ MKCPTabBarControllerDelegate>
     [self refreshButtonPressed];
 }
 
-- (void)showDeviceTypeErrorAlert {
-    NSString *msg = @"Oops! Something went wrong. Please check the device version or contact MOKO.";
-    MKAlertController *alertController = [MKAlertController alertControllerWithTitle:@""
-                                                                             message:msg
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    }];
-    [alertController addAction:moreAction];
-    [kAppRootController presentViewController:alertController animated:YES completion:nil];
-}
-
 - (void)showPasswordAlert:(CBPeripheral *)peripheral{
-    NSString *alertTitle = @"Please enter password.";
-    MKAlertController *alertController = [MKAlertController alertControllerWithTitle:alertTitle
-                                                                             message:@""
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
     @weakify(self);
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    MKAlertViewAction *cancelAction = [[MKAlertViewAction alloc] initWithTitle:@"Cancel" handler:^{
         @strongify(self);
-        self.passwordField = nil;
-        self.passwordField = textField;
-        if (ValidStr([[NSUserDefaults standardUserDefaults] objectForKey:@"mk_cp_localPasswordKey"])) {
-            textField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"mk_cp_localPasswordKey"];
-        }
-        self.passwordField.placeholder = @"No more than 16 characters.";
-        [textField addTarget:self action:@selector(passwordInput) forControlEvents:UIControlEventEditingChanged];
+        self.refreshButton.selected = NO;
+        [self refreshButtonPressed];
     }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        @strongify(self);
-        [self connectFailed];
-    }];
-    [alertController addAction:cancelAction];
-    UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
         @strongify(self);
         [self connectDeviceWithPassword:peripheral];
     }];
-    [alertController addAction:moreAction];
+    NSString *localPassword = [[NSUserDefaults standardUserDefaults] objectForKey:localPasswordKey];
+    self.asciiText = localPassword;
+    MKAlertViewTextField *textField = [[MKAlertViewTextField alloc] initWithTextValue:SafeStr(localPassword)
+                                                                          placeholder:@"No more than 16 characters."
+                                                                        textFieldType:mk_normal
+                                                                            maxLength:16
+                                                                              handler:^(NSString * _Nonnull text) {
+        @strongify(self);
+        self.asciiText = text;
+    }];
     
-    [kAppRootController presentViewController:alertController animated:YES completion:nil];
-}
-/**
- 监听输入的密码
- */
-- (void)passwordInput{
-    NSString *tempInputString = self.passwordField.text;
-    if (!ValidStr(tempInputString)) {
-        self.passwordField.text = @"";
-        return;
-    }
-    self.passwordField.text = (tempInputString.length > 16 ? [tempInputString substringToIndex:16] : tempInputString);
+    NSString *msg = @"Please enter password.";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:cancelAction];
+    [alertView addAction:confirmAction];
+    [alertView addTextField:textField];
+    [alertView showAlertWithTitle:@"Enter password" message:msg notificationName:@"mk_cp_needDismissAlert"];
 }
 
 #pragma mark -
@@ -467,7 +455,35 @@ MKCPTabBarControllerDelegate>
     self.searchButton.dataModel = self.buttonModel;
     [self runloopObserver];
     [MKCPCentralManager shared].delegate = self;
-    [self performSelector:@selector(showCentralStatus) withObject:nil afterDelay:.5f];
+    NSNumber *firstInstall = [[NSUserDefaults standardUserDefaults] objectForKey:@"mk_cp_firstInstall"];
+    NSTimeInterval afterTime = 0.5f;
+    if (!ValidNum(firstInstall)) {
+        //第一次安装
+        [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:@"mk_cp_firstInstall"];
+        afterTime = 3.5f;
+    }
+    [self performSelector:@selector(refreshButtonPressed) withObject:nil afterDelay:afterTime];
+}
+
+#pragma mark - private method
+- (void)showAuthorizationAlert {
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+        
+    }];
+    NSString *msg = @"This function requires Bluetooth authorization, please enable M3Probe permission in Settings-Privacy-Bluetooth.";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:@"Warning!" message:msg notificationName:@"mk_cp_needDismissAlert"];
+}
+
+- (void)showBLEDisable {
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+        
+    }];
+    NSString *msg = @"The current system of bluetooth is not available!";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:@"Warning!" message:msg notificationName:@"mk_cp_needDismissAlert"];
 }
 
 #pragma mark - UI

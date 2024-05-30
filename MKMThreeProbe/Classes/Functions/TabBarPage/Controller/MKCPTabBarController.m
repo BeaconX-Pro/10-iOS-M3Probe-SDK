@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "MKBaseNavigationController.h"
 
-#import "MKAlertController.h"
+#import "MKAlertView.h"
 
 #import "MKBLEBaseLogManager.h"
 
@@ -162,21 +162,19 @@
 }
 
 - (void)showAlertWithMsg:(NSString *)msg title:(NSString *)title{
-    MKAlertController *alertController = [MKAlertController alertControllerWithTitle:title
-                                                                             message:msg
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    @weakify(self);
-    UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        @strongify(self);
-        [self gotoScanPage];
-    }];
-    [alertController addAction:moreAction];
-    
     //让setting页面推出的alert消失
     [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_cp_needDismissAlert" object:nil];
     //让所有MKPickView消失
     [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_customUIModule_dismissPickView" object:nil];
-    [self performSelector:@selector(presentAlert:) withObject:alertController afterDelay:1.2f];
+    
+    @weakify(self);
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+        @strongify(self);
+        [self gotoScanPage];
+    }];
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:title message:msg notificationName:@"mk_cp_needDismissAlert"];
 }
 
 - (void)presentAlert:(UIAlertController *)alert {

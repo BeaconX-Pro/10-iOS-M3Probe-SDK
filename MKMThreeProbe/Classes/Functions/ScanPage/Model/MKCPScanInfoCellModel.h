@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *humidity;
 
+@property (nonatomic, assign)BOOL supportTof;
+
 @property (nonatomic, copy)NSString *tofRanging;
 
 @property (nonatomic, assign)BOOL connectable;

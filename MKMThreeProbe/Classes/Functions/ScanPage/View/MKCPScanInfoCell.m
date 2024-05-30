@@ -93,12 +93,6 @@ static CGFloat const connectButtonHeight = 30.f;
         [self.contentView addSubview:self.probeLabel];
         [self.contentView addSubview:self.waterLabel];
         [self.contentView addSubview:self.waterStatusLabel];
-        [self.contentView addSubview:self.temperatureLabel];
-        [self.contentView addSubview:self.temperatureValueLabel];
-        [self.contentView addSubview:self.humidityLabel];
-        [self.contentView addSubview:self.humidityValueLabel];
-        [self.contentView addSubview:self.tofLabel];
-        [self.contentView addSubview:self.tofValueLabel];
         
         [self.layer setMasksToBounds:YES];
         [self.layer setCornerRadius:4.f];
@@ -165,42 +159,59 @@ static CGFloat const connectButtonHeight = 30.f;
         make.centerY.mas_equalTo(self.waterLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(11.f).lineHeight);
     }];
-    [self.temperatureLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.deviceNameLabel.mas_left);
-        make.right.mas_equalTo(self.temperatureValueLabel.mas_left).mas_offset(-10.f);
-        make.top.mas_equalTo(self.waterLabel.mas_bottom).mas_offset(5.f);
-        make.height.mas_equalTo(MKFont(11.f).lineHeight);
-    }];
-    [self.temperatureValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(80.f);
-        make.right.mas_equalTo(-offset_X);
-        make.centerY.mas_equalTo(self.temperatureLabel.mas_centerY);
-        make.height.mas_equalTo(MKFont(11.f).lineHeight);
-    }];
-    [self.humidityLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.deviceNameLabel.mas_left);
-        make.right.mas_equalTo(self.humidityValueLabel.mas_left).mas_offset(-10.f);
-        make.top.mas_equalTo(self.temperatureLabel.mas_bottom).mas_offset(5.f);
-        make.height.mas_equalTo(MKFont(11.f).lineHeight);
-    }];
-    [self.humidityValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(80.f);
-        make.right.mas_equalTo(-offset_X);
-        make.centerY.mas_equalTo(self.humidityLabel.mas_centerY);
-        make.height.mas_equalTo(MKFont(11.f).lineHeight);
-    }];
-    [self.tofLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.deviceNameLabel.mas_left);
-        make.right.mas_equalTo(self.tofValueLabel.mas_left).mas_offset(-10.f);
-        make.top.mas_equalTo(self.humidityLabel.mas_bottom).mas_offset(5.f);
-        make.height.mas_equalTo(MKFont(11.f).lineHeight);
-    }];
-    [self.tofValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(80.f);
-        make.right.mas_equalTo(-offset_X);
-        make.centerY.mas_equalTo(self.tofLabel.mas_centerY);
-        make.height.mas_equalTo(MKFont(11.f).lineHeight);
-    }];
+    if (self.dataModel.supportT) {
+        [self.temperatureLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.deviceNameLabel.mas_left);
+            make.right.mas_equalTo(self.temperatureValueLabel.mas_left).mas_offset(-10.f);
+            make.top.mas_equalTo(self.waterLabel.mas_bottom).mas_offset(5.f);
+            make.height.mas_equalTo(MKFont(11.f).lineHeight);
+        }];
+        [self.temperatureValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(80.f);
+            make.right.mas_equalTo(-offset_X);
+            make.centerY.mas_equalTo(self.temperatureLabel.mas_centerY);
+            make.height.mas_equalTo(MKFont(11.f).lineHeight);
+        }];
+    }
+    if (self.dataModel.supportH) {
+        [self.humidityLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.deviceNameLabel.mas_left);
+            make.right.mas_equalTo(self.humidityValueLabel.mas_left).mas_offset(-10.f);
+            if (self.dataModel.supportT) {
+                make.top.mas_equalTo(self.temperatureLabel.mas_bottom).mas_offset(5.f);
+            }else {
+                make.top.mas_equalTo(self.waterLabel.mas_bottom).mas_offset(5.f);
+            }
+            make.height.mas_equalTo(MKFont(11.f).lineHeight);
+        }];
+        [self.humidityValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(80.f);
+            make.right.mas_equalTo(-offset_X);
+            make.centerY.mas_equalTo(self.humidityLabel.mas_centerY);
+            make.height.mas_equalTo(MKFont(11.f).lineHeight);
+        }];
+    }
+    if (self.dataModel.supportTof) {
+        [self.tofLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.deviceNameLabel.mas_left);
+            make.right.mas_equalTo(self.tofValueLabel.mas_left).mas_offset(-10.f);
+            if (self.dataModel.supportH) {
+                make.top.mas_equalTo(self.humidityLabel.mas_bottom).mas_offset(5.f);
+            }else if (self.dataModel.supportT) {
+                make.top.mas_equalTo(self.temperatureLabel.mas_bottom).mas_offset(5.f);
+            }else {
+                make.top.mas_equalTo(self.waterLabel.mas_bottom).mas_offset(5.f);
+            }
+            
+            make.height.mas_equalTo(MKFont(11.f).lineHeight);
+        }];
+        [self.tofValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(80.f);
+            make.right.mas_equalTo(-offset_X);
+            make.centerY.mas_equalTo(self.tofLabel.mas_centerY);
+            make.height.mas_equalTo(MKFont(11.f).lineHeight);
+        }];
+    }
 }
 
 #pragma mark - event method
@@ -222,9 +233,44 @@ static CGFloat const connectButtonHeight = 30.f;
     self.deviceNameLabel.text = (ValidStr(_dataModel.deviceName) ? _dataModel.deviceName : @"N/A");
     self.connectButton.hidden = !_dataModel.connectable;
     self.waterStatusLabel.text = (_dataModel.waterLeakage ? @"YES" : @"NO");
-    self.temperatureValueLabel.text = [NSString stringWithFormat:@"%@%@",_dataModel.temperature,@"℃"];
-    self.humidityValueLabel.text = [NSString stringWithFormat:@"%@%@",_dataModel.humidity,@"%RH"];
-    self.tofValueLabel.text = [NSString stringWithFormat:@"%@%@",_dataModel.tofRanging,@"mm"];
+    
+    if (self.temperatureLabel.superview) {
+        [self.temperatureLabel removeFromSuperview];
+    }
+    if (self.temperatureValueLabel.superview) {
+        [self.temperatureValueLabel removeFromSuperview];
+    }
+    if (self.humidityLabel.superview) {
+        [self.humidityLabel removeFromSuperview];
+    }
+    if (self.humidityValueLabel.superview) {
+        [self.humidityValueLabel removeFromSuperview];
+    }
+    if (self.tofLabel.superview) {
+        [self.tofLabel removeFromSuperview];
+    }
+    if (self.tofValueLabel.superview) {
+        [self.tofValueLabel removeFromSuperview];
+    }
+    
+    if (_dataModel.supportT) {
+        [self.contentView addSubview:self.temperatureLabel];
+        [self.contentView addSubview:self.temperatureValueLabel];
+        self.temperatureValueLabel.text = [NSString stringWithFormat:@"%@%@",_dataModel.temperature,@"℃"];
+    }
+    
+    if (_dataModel.supportH) {
+        [self.contentView addSubview:self.humidityLabel];
+        [self.contentView addSubview:self.humidityValueLabel];
+        self.humidityValueLabel.text = [NSString stringWithFormat:@"%@%@",_dataModel.humidity,@"%RH"];
+    }
+    
+    if (_dataModel.supportTof) {
+        [self.contentView addSubview:self.tofLabel];
+        [self.contentView addSubview:self.tofValueLabel];
+        self.tofValueLabel.text = [NSString stringWithFormat:@"%@%@",_dataModel.tofRanging,@"mm"];
+    }
+    [self setNeedsLayout];
 }
 
 #pragma mark - getter
