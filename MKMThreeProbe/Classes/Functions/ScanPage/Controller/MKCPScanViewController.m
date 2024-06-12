@@ -331,12 +331,11 @@ MKCPTabBarControllerDelegate>
     NSInteger currentIndex = 0;
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
         MKCPScanInfoCellModel *dataModel = self.dataList[i];
-        if ([dataModel.deviceName isEqualToString:scanDataModel.deviceName]) {
+        if ([dataModel.identifier isEqualToString:scanDataModel.identifier]) {
             currentIndex = i;
             break;
         }
     }
-    MKCPScanInfoCellModel *dataModel = self.dataList[currentIndex];
     [self.dataList replaceObjectAtIndex:currentIndex withObject:scanDataModel];
     [self needRefreshList];
 }

@@ -133,7 +133,7 @@ MKTextFieldCellDelegate>
     MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
     cellModel2.index = 1;
     cellModel2.msg = @"Water leakage detection interval";
-    cellModel2.textPlaceholder = @"1~65535";
+    cellModel2.textPlaceholder = @"1~86400";
     cellModel2.textFieldType = mk_realNumberOnly;
     cellModel2.textFieldValue = self.dataModel.waterInterval;
     cellModel2.unit = @"sec";

@@ -199,11 +199,11 @@ static const char *cp_disconnectListenSuccessKey = "cp_disconnectListenSuccessKe
 }
 
 - (CBCharacteristic *)cp_temperature {
-    return objc_getAssociatedObject(self, &cp_waterLeakageKey);
+    return objc_getAssociatedObject(self, &cp_temperatureKey);
 }
 
 - (CBCharacteristic *)cp_waterLeakage {
-    return objc_getAssociatedObject(self, &cp_temperatureKey);
+    return objc_getAssociatedObject(self, &cp_waterLeakageKey);
 }
 
 - (CBCharacteristic *)cp_customWrite{

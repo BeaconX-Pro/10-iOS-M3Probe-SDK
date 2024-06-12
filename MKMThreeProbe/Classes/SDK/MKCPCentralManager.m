@@ -196,7 +196,7 @@ static dispatch_once_t onceToken;
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:cp_temperatureHumidityUUID]]) {
         //监听的温湿度数据
         NSString *content = [MKBLEBaseSDKAdopter hexStringFromData:characteristic.value];
-        if (content.length == 8) {
+        if (content.length == 8 && ![content isEqualToString:@"ffffffff"]) {
             NSInteger tempTemp = [[MKBLEBaseSDKAdopter signedHexTurnString:[content substringWithRange:NSMakeRange(0, 4)]] integerValue];
             NSInteger tempHui = [MKBLEBaseSDKAdopter getDecimalWithHex:content range:NSMakeRange(4, 4)];
             NSString *temperature = [NSString stringWithFormat:@"%.1f",(tempTemp * 0.1)];
@@ -232,7 +232,7 @@ static dispatch_once_t onceToken;
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:cp_temperatureUUID]]) {
         //监听的温度数据
         NSString *content = [MKBLEBaseSDKAdopter hexStringFromData:characteristic.value];
-        if (content.length == 4) {
+        if (content.length == 4 && ![content isEqualToString:@"ffff"]) {
             NSInteger tempTemp = [[MKBLEBaseSDKAdopter signedHexTurnString:[content substringWithRange:NSMakeRange(0, 4)]] integerValue];
             NSString *temperature = [NSString stringWithFormat:@"%.1f",(tempTemp * 0.1)];
             NSDictionary *htData = @{
