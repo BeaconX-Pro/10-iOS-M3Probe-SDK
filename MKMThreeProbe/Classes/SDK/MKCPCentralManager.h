@@ -21,7 +21,6 @@ extern NSString *const mk_cp_receiveThreeAxisAccelerometerDataNotification;
 extern NSString *const mk_cp_receiveHTDataNotification;
 extern NSString *const mk_cp_receiveTemperatureDataNotification;
 extern NSString *const mk_cp_receiveWaterLeakageDetectionDataNotification;
-extern NSString *const mk_cp_cl_receiveHTDataNotification;
 
 /*
  After connecting the device, if no password is entered within one minute, it returns 0x00. After successful password change, it returns 0x01. Factory reset of the device,it returns 0x02.
