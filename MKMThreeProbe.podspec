@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/lovexiaoxia/MKMThreeProbe'
+  s.homepage         = 'https://github.com/BeaconX-Pro/10-iOS-M3Probe-SDK'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'lovexiaoxia' => 'aadyx2007@163.com' }
-  s.source           = { :git => 'https://github.com/lovexiaoxia/MKMThreeProbe.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/BeaconX-Pro/10-iOS-M3Probe-SDK.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '14.0'
