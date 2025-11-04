@@ -2,7 +2,7 @@
  * libxlsxwriter
  *
  * SPDX-License-Identifier: BSD-2-Clause
- * Copyright 2014-2024, John McNamara, jmcnamara@cpan.org.
+ * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org.
  *
  * relationships - A libxlsxwriter library for creating Excel XLSX
  *                 relationships files.
@@ -61,6 +61,7 @@ void lxw_add_ms_package_relationship(lxw_relationships *self,
 void lxw_add_worksheet_relationship(lxw_relationships *self, const char *type,
                                     const char *target,
                                     const char *target_mode);
+void lxw_add_rich_value_relationship(lxw_relationships *self);
 
 /* Declarations required for unit testing. */
 #ifdef TESTING
