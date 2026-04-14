@@ -28,42 +28,68 @@
       "name": "ConnectManager",
       "source_files": "MKMThreeProbe/Classes/ConnectManager/**",
       "dependencies": {
-        "MKBaseModuleLibrary": [],
-        "MKMThreeProbe/SDK": []
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKMThreeProbe/SDK": [
+
+        ]
       }
     },
     {
       "name": "CTMediator",
       "source_files": "MKMThreeProbe/Classes/CTMediator/**",
       "dependencies": {
-        "CTMediator": []
+        "CTMediator": [
+
+        ]
       }
     },
     {
       "name": "SDK",
       "source_files": "MKMThreeProbe/Classes/SDK/**",
       "dependencies": {
-        "MKBaseBleModule": []
+        "MKBaseBleModule": [
+
+        ]
       }
     },
     {
       "name": "Target",
       "source_files": "MKMThreeProbe/Classes/Target/**",
       "dependencies": {
-        "MKMThreeProbe/Functions": []
+        "MKMThreeProbe/Functions": [
+
+        ]
       }
     },
     {
       "name": "Functions",
       "dependencies": {
-        "MKMThreeProbe/ConnectManager": [],
-        "MKMThreeProbe/SDK": [],
-        "MKMThreeProbe/CTMediator": [],
-        "MKBaseModuleLibrary": [],
-        "MKCustomUIModule": [],
-        "MKBeaconXCustomUI": [],
-        "HHTransition": [],
-        "MLInputDodger": [],
+        "MKMThreeProbe/ConnectManager": [
+
+        ],
+        "MKMThreeProbe/SDK": [
+
+        ],
+        "MKMThreeProbe/CTMediator": [
+
+        ],
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKCustomUIModule": [
+
+        ],
+        "MKBeaconXCustomUI": [
+
+        ],
+        "HHTransition": [
+
+        ],
+        "MLInputDodger": [
+
+        ],
         "iOSDFULibrary": [
           "4.13.0"
         ]
@@ -85,8 +111,12 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/AdvConfigPage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/AdvConfigPage/Model": [],
-                "MKMThreeProbe/Functions/AdvConfigPage/View": []
+                "MKMThreeProbe/Functions/AdvConfigPage/Model": [
+
+                ],
+                "MKMThreeProbe/Functions/AdvConfigPage/View": [
+
+                ]
               }
             },
             {
@@ -106,7 +136,9 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/ProbePage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/ProbePage/View": []
+                "MKMThreeProbe/Functions/ProbePage/View": [
+
+                ]
               }
             },
             {
@@ -122,7 +154,9 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/QuickSwitchPage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/QuickSwitchPage/Model": []
+                "MKMThreeProbe/Functions/QuickSwitchPage/Model": [
+
+                ]
               }
             },
             {
@@ -138,10 +172,18 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/ScanPage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/ScanPage/Model": [],
-                "MKMThreeProbe/Functions/ScanPage/View": [],
-                "MKMThreeProbe/Functions/TabBarPage/Controller": [],
-                "MKMThreeProbe/Functions/AboutPage/Controller": []
+                "MKMThreeProbe/Functions/ScanPage/Model": [
+
+                ],
+                "MKMThreeProbe/Functions/ScanPage/View": [
+
+                ],
+                "MKMThreeProbe/Functions/TabBarPage/Controller": [
+
+                ],
+                "MKMThreeProbe/Functions/AboutPage/Controller": [
+
+                ]
               }
             },
             {
@@ -152,7 +194,9 @@
               "name": "View",
               "source_files": "MKMThreeProbe/Classes/Functions/ScanPage/View/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/ScanPage/Model": []
+                "MKMThreeProbe/Functions/ScanPage/Model": [
+
+                ]
               }
             }
           ]
@@ -164,7 +208,9 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/SensorConfigPage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/SensorConfigPage/Model": []
+                "MKMThreeProbe/Functions/SensorConfigPage/Model": [
+
+                ]
               }
             },
             {
@@ -180,8 +226,12 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/SensorPage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/SensorPage/View": [],
-                "MKMThreeProbe/Functions/ProbePage": []
+                "MKMThreeProbe/Functions/SensorPage/View": [
+
+                ],
+                "MKMThreeProbe/Functions/ProbePage": [
+
+                ]
               }
             },
             {
@@ -197,10 +247,18 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/SettingPage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/SensorConfigPage/Controller": [],
-                "MKMThreeProbe/Functions/QuickSwitchPage/Controller": [],
-                "MKMThreeProbe/Functions/UpdatePage/Controller": [],
-                "MKMThreeProbe/Functions/AdvConfigPage/Controller": []
+                "MKMThreeProbe/Functions/SensorConfigPage/Controller": [
+
+                ],
+                "MKMThreeProbe/Functions/QuickSwitchPage/Controller": [
+
+                ],
+                "MKMThreeProbe/Functions/UpdatePage/Controller": [
+
+                ],
+                "MKMThreeProbe/Functions/AdvConfigPage/Controller": [
+
+                ]
               }
             }
           ]
@@ -212,9 +270,15 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/TabBarPage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/TabBarPage/Model": [],
-                "MKMThreeProbe/Functions/SensorPage/Controller": [],
-                "MKMThreeProbe/Functions/SettingPage/Controller": []
+                "MKMThreeProbe/Functions/TabBarPage/Model": [
+
+                ],
+                "MKMThreeProbe/Functions/SensorPage/Controller": [
+
+                ],
+                "MKMThreeProbe/Functions/SettingPage/Controller": [
+
+                ]
               }
             },
             {
@@ -230,7 +294,9 @@
               "name": "Controller",
               "source_files": "MKMThreeProbe/Classes/Functions/UpdatePage/Controller/**",
               "dependencies": {
-                "MKMThreeProbe/Functions/UpdatePage/Model": []
+                "MKMThreeProbe/Functions/UpdatePage/Model": [
+
+                ]
               }
             },
             {

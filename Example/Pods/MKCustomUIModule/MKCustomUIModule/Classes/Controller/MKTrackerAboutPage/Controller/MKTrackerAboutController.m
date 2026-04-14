@@ -60,10 +60,10 @@
         return;
     }
     if (self.protocol.titleBarColor) {
-        self.custom_naviBarColor = self.protocol.titleBarColor;
+        self.navBarBackgroundColor = self.protocol.titleBarColor;
     }
     if (self.protocol.titleColor) {
-        self.titleLabel.textColor = self.protocol.titleColor;
+        [self setNavTitleColor:self.protocol.titleColor];
     }
     self.defaultTitle = (ValidStr(self.protocol.title) ? self.protocol.title : @"ABOUT");
     [self.rightButton setHidden:YES];
@@ -98,7 +98,7 @@
     [self.aboutIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(aboutIconWidth);
-        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(40.f);
+        make.top.equalTo(self.view).offset(kTopBarHeight + 40);
         make.height.mas_equalTo(aboutIconHeight);
     }];
     [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -128,7 +128,7 @@
     [self.bottomIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(bottomIconWidth);
-        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        make.bottom.equalTo(self.view).offset(-kSafeAreaHeight);
         make.height.mas_equalTo(bottomIconHeight);
     }];
 }

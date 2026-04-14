@@ -7,26 +7,15 @@
 //
 
 #import "MKBaseViewController.h"
-#import "WRNavigationBar.h"
-
+#import "WRCustomNavigationBar.h"
 #import "MKMacroDefines.h"
-
-#import "UINavigationItem+MKAdd.h"
 #import "UIButton+MKAdd.h"
 
 @interface MKBaseViewController ()<UIGestureRecognizerDelegate>
-/**
- *  标题label
- */
-@property (nonatomic,strong) UILabel  *titleLabel;
-/**
- *  左按钮
- */
-@property (nonatomic,strong) UIButton *leftButton;
-/**
- *  右按钮
- */
-@property (nonatomic,strong) UIButton *rightButton;
+
+@property (nonatomic, strong) UIButton *leftButton;
+@property (nonatomic, strong) UIButton *rightButton;
+@property (nonatomic, strong) WRCustomNavigationBar *customNavBar;
 
 @end
 
@@ -34,96 +23,164 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupNavigationParams];
+    self.view.backgroundColor = COLOR_WHITE_MACROS;
+    [self setupCustomNavigationBar];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // 隐藏系统导航栏
+    self.navigationController.navigationBarHidden = YES;
+    // 确保自定义导航栏在最前面
+    [self.view bringSubviewToFront:self.customNavBar];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    
+    // 刷新按钮状态
+    [self refreshLeftButton];
+    [self refreshRightButton];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     self.navigationController.interactivePopGestureRecognizer.delegate = nil;
 }
 
-#pragma mark - super method
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
-}
-
 #pragma mark - UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if ([self isRootViewController]) {
         return NO;
     }
     return YES;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return [gestureRecognizer isKindOfClass:UIScreenEdgePanGestureRecognizer.class];
 }
 
-#pragma mark - event method
--(void)leftButtonMethod{
+#pragma mark - Event Method
+- (void)leftButtonMethod {
     if (self.isPrensent) {
         [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else{
+    } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
--(void)rightButtonMethod{
-    
+- (void)rightButtonMethod {
+    // 子类重写
 }
 
-#pragma mark - custom method
+#pragma mark - Public Method
+- (void)setNavTitleFont:(UIFont *)font {
+    self.customNavBar.titleLabelFont = font;
+}
 
-- (void)setupNavigationParams {
-    self.view.backgroundColor = COLOR_WHITE_MACROS;
-    [self wr_setNavBarBarTintColor:NAVBAR_COLOR_MACROS];
-    UIBarButtonItem *leftbuttonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
-    [self.navigationItem setLeftBarButtonItem1:leftbuttonItem];
-    UIBarButtonItem *rightbuttonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightButton];
-    [self.navigationItem setRightBarButtonItem1:rightbuttonItem];
-    self.navigationItem.titleView = self.titleLabel;
+- (void)setNavTitleColor:(UIColor *)color {
+    self.customNavBar.titleLabelColor = color;
+}
+
+#pragma mark - Custom Method
+- (void)setupCustomNavigationBar {
+    // 创建自定义导航栏
+    self.customNavBar = [WRCustomNavigationBar CustomNavigationBar];
+    self.customNavBar.barBackgroundColor = self.navBarBackgroundColor ?: NAVBAR_COLOR_MACROS;
+    self.customNavBar.titleLabelColor = COLOR_WHITE_MACROS;
+    self.customNavBar.titleLabelFont = MKFont(18.f);
+    
+    // 设置标题
+    [self updateTitle];
+    
+    // 设置按钮
+    [self refreshLeftButton];
+    [self refreshRightButton];
+    
+    // 设置点击事件
+    __weak typeof(self) weakSelf = self;
+    self.customNavBar.onClickLeftButton = ^{
+        [weakSelf leftButtonMethod];
+    };
+    self.customNavBar.onClickRightButton = ^{
+        [weakSelf rightButtonMethod];
+    };
+    
+    [self.view addSubview:self.customNavBar];
+}
+
+- (void)updateTitle {
+    NSString *titleText = self.defaultTitle ?: self.title;
+    if (titleText.length > 0) {
+        self.customNavBar.title = titleText;
+    }
+}
+
+- (void)refreshLeftButton {
+    UIImage *leftImage = [self.leftButton imageForState:UIControlStateNormal];
+    NSString *leftTitle = [self.leftButton titleForState:UIControlStateNormal];
+    UIColor *leftTitleColor = [self.leftButton titleColorForState:UIControlStateNormal];
+    
+    if (leftImage) {
+        [self.customNavBar wr_setLeftButtonWithImage:leftImage];
+    } else if (leftTitle.length > 0) {
+        [self.customNavBar wr_setLeftButtonWithTitle:leftTitle titleColor:leftTitleColor ?: COLOR_WHITE_MACROS];
+    } else {
+        // 默认返回箭头
+        UIImage *backImage = LOADICON(@"MKBaseModuleLibrary", @"MKBaseViewController", @"navigation_back_button_white.png");
+        backImage = [backImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [self.customNavBar wr_setLeftButtonWithImage:backImage];
+    }
+}
+
+- (void)refreshRightButton {
+    UIImage *rightImage = [self.rightButton imageForState:UIControlStateNormal];
+    NSString *rightTitle = [self.rightButton titleForState:UIControlStateNormal];
+    UIColor *rightTitleColor = [self.rightButton titleColorForState:UIControlStateNormal];
+    
+    if (rightImage) {
+        [self.customNavBar wr_setRightButtonWithImage:rightImage];
+    } else if (rightTitle.length > 0) {
+        [self.customNavBar wr_setRightButtonWithTitle:rightTitle titleColor:rightTitleColor ?: COLOR_WHITE_MACROS];
+    } else {
+        // 隐藏右按钮
+        [self.customNavBar wr_setRightButtonWithImage:nil];
+    }
 }
 
 - (void)setDefaultTitle:(NSString *)defaultTitle {
     _defaultTitle = defaultTitle;
-    self.titleLabel.text = (self.title == nil ? defaultTitle : self.title);
+    [self updateTitle];
 }
 
-- (void)setCustom_naviBarColor:(UIColor *)custom_naviBarColor {
-    [self wr_setNavBarBarTintColor:custom_naviBarColor];
+- (void)setNavBarBackgroundColor:(UIColor *)navBarBackgroundColor {
+    _navBarBackgroundColor = navBarBackgroundColor;
+    self.customNavBar.barBackgroundColor = navBarBackgroundColor ?: NAVBAR_COLOR_MACROS;
 }
 
-- (UIColor *)custom_naviBarColor {
-    return [self wr_navBarBarTintColor];
+- (void)setNavigationBarImage:(UIImage *)image {
+    self.customNavBar.barBackgroundImage = image;
 }
 
--(void)setNavigationBarImage:(UIImage*)image{
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
-        UIImage *image1 = [image resizableImageWithCapInsets:UIEdgeInsetsMake(2, 1, 2, 1)];
-        [self.navigationController.navigationBar setBackgroundImage:image1 forBarMetrics:UIBarMetricsDefault];
-    }
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
-+ (BOOL)isCurrentViewControllerVisible:(UIViewController *)viewController{
++ (BOOL)isCurrentViewControllerVisible:(UIViewController *)viewController {
     return (viewController.isViewLoaded && viewController.view.window);
 }
 
-- (void)popToViewControllerWithClassName:(NSString *)className{
+- (void)popToViewControllerWithClassName:(NSString *)className {
     UIViewController *popController = nil;
     for (UIViewController *v in self.navigationController.viewControllers) {
         if ([v isKindOfClass:NSClassFromString(className)]) {
@@ -133,58 +190,40 @@
     }
     if (popController) {
         [self.navigationController popToViewController:popController animated:YES];
-    }
-    else{
+    } else {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
-- (BOOL)isRootViewController{
+- (BOOL)isRootViewController {
     return (self == self.navigationController.viewControllers.firstObject);
 }
 
-#pragma mark - setter & getter
+#pragma mark - Lazy Load
 - (UIButton *)leftButton {
     if (!_leftButton) {
-        _leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 2.0f, 40.0f, 40.0f)];
-        [_leftButton setImage:LOADICON(@"MKBaseModuleLibrary", @"MKBaseViewController", @"navigation_back_button_white.png")
-                     forState:UIControlStateNormal];
-        [_leftButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        [_leftButton.titleLabel setFont:MKFont(16)];
+        _leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        UIImage *backImage = LOADICON(@"MKBaseModuleLibrary", @"MKBaseViewController", @"navigation_back_button_white.png");
+        backImage = [backImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [_leftButton setImage:backImage forState:UIControlStateNormal];
         [_leftButton setTitleColor:COLOR_WHITE_MACROS forState:UIControlStateNormal];
-        [_leftButton setTitleColor:RGBACOLOR(255, 255, 255, 0.4) forState:UIControlStateHighlighted];
         [_leftButton addTarget:self action:@selector(leftButtonMethod) forControlEvents:UIControlEventTouchUpInside];
         _leftButton.acceptEventInterval = 1.f;
-        [_leftButton setNeedsLayout];
+        _leftButton.backgroundColor = [UIColor clearColor];
     }
     return _leftButton;
 }
 
 - (UIButton *)rightButton {
     if (!_rightButton) {
-        _rightButton = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 40.0f, 2.0f, 40.0f, 40.0f)];
+        _rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         [_rightButton.titleLabel setFont:MKFont(16)];
-        [_rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_rightButton setTitleColor:RGBACOLOR(255, 255, 255, 0.4) forState:UIControlStateHighlighted];
+        [_rightButton setTitleColor:COLOR_WHITE_MACROS forState:UIControlStateNormal];
         [_rightButton addTarget:self action:@selector(rightButtonMethod) forControlEvents:UIControlEventTouchUpInside];
         _rightButton.acceptEventInterval = 1.f;
-        [_rightButton setNeedsLayout];
+        _rightButton.backgroundColor = [UIColor clearColor];
     }
     return _rightButton;
 }
 
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60.0f, 7.0f, [UIScreen mainScreen].bounds.size.width - 120.0f, 30.0f)];
-        _titleLabel.font = MKFont(20);
-        _titleLabel.textColor = COLOR_WHITE_MACROS;
-        _titleLabel.tintColor = COLOR_WHITE_MACROS;
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.backgroundColor = COLOR_CLEAR_MACROS;
-    }
-    return _titleLabel;
-}
-
 @end
-
-

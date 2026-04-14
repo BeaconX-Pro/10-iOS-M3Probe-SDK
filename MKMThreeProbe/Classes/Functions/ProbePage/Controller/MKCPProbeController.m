@@ -95,7 +95,7 @@
     [self.temperatureView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
         make.right.mas_equalTo(self.view.mas_centerX).mas_offset(-5.f);
-        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(30.f);
+        make.top.equalTo(self.view).offset(kTopBarHeight + 30.f);
         make.height.mas_equalTo(100.f);
     }];
 }
@@ -108,7 +108,7 @@
     [self.humidityView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_centerX).mas_offset(5.f);
         make.right.mas_equalTo(-15.f);
-        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(30.f);
+        make.top.equalTo(self.view).offset(kTopBarHeight + 30.f);
         make.height.mas_equalTo(100.f);
     }];
 }
@@ -121,7 +121,7 @@
     [self.waterView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
         make.right.mas_equalTo(self.view.mas_centerX).mas_offset(-5.f);
-        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(30.f);
+        make.top.equalTo(self.view).offset(kTopBarHeight + 30.f);
         make.height.mas_equalTo(100.f);
     }];
 }

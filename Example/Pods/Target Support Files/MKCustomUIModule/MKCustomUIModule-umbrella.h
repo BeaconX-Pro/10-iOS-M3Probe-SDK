@@ -35,7 +35,6 @@
 #import "MKAboutController.h"
 #import "MKAboutCellModel.h"
 #import "MKAboutPageCell.h"
-#import "MKAlertController.h"
 #import "MKTrackerAboutController.h"
 #import "MKMQTTGeneralParamsView.h"
 #import "MKMQTTSSLCertificateView.h"

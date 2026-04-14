@@ -4,7 +4,7 @@
  * Used in conjunction with the libxlsxwriter library.
  *
  * SPDX-License-Identifier: BSD-2-Clause
- * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org.
+ * Copyright 2014-2024, John McNamara, jmcnamara@cpan.org.
  *
  */
 
@@ -737,10 +737,8 @@ _store_defined_name(lxw_workbook *self, const char *name,
         /* Remove any worksheet quoting. */
         if (worksheet_name[0] == '\'')
             worksheet_name++;
-        if (strlen(worksheet_name) > 0
-            && worksheet_name[strlen(worksheet_name) - 1] == '\'') {
+        if (worksheet_name[strlen(worksheet_name) - 1] == '\'')
             worksheet_name[strlen(worksheet_name) - 1] = '\0';
-        }
 
         /* Search for worksheet name to get the equivalent worksheet index. */
         STAILQ_FOREACH(sheet, self->sheets, list_pointers) {
@@ -978,9 +976,8 @@ _populate_range_dimensions(lxw_workbook *self, lxw_series_range *range)
         /* Remove any worksheet quoting. */
         if (sheetname[0] == '\'')
             sheetname++;
-        if (strlen(sheetname) > 0 && sheetname[strlen(sheetname) - 1] == '\'') {
+        if (sheetname[strlen(sheetname) - 1] == '\'')
             sheetname[strlen(sheetname) - 1] = '\0';
-        }
 
         /* Check that the sheetname exists. */
         if (!workbook_get_worksheet_by_name(self, sheetname)) {
@@ -1614,9 +1611,6 @@ _write_workbook_pr(lxw_workbook *self)
     if (self->vba_codename)
         LXW_PUSH_ATTRIBUTES_STR("codeName", self->vba_codename);
 
-    if (self->use_1904_epoch)
-        LXW_PUSH_ATTRIBUTES_STR("date1904", "1");
-
     LXW_PUSH_ATTRIBUTES_STR("defaultThemeVersion", "124226");
 
     lxw_xml_empty_tag(self->file, "workbookPr", &attributes);
@@ -1636,8 +1630,8 @@ _write_workbook_view(lxw_workbook *self)
     LXW_INIT_ATTRIBUTES();
     LXW_PUSH_ATTRIBUTES_STR("xWindow", "240");
     LXW_PUSH_ATTRIBUTES_STR("yWindow", "15");
-    LXW_PUSH_ATTRIBUTES_INT("windowWidth", self->window_width);
-    LXW_PUSH_ATTRIBUTES_INT("windowHeight", self->window_height);
+    LXW_PUSH_ATTRIBUTES_STR("windowWidth", "16095");
+    LXW_PUSH_ATTRIBUTES_STR("windowHeight", "9660");
 
     if (self->first_sheet)
         LXW_PUSH_ATTRIBUTES_INT("firstSheet", self->first_sheet);
@@ -1976,8 +1970,6 @@ workbook_new_opt(const char *filename, lxw_workbook_options *options)
     }
 
     workbook->max_url_length = 2079;
-    workbook->window_width = 16095;
-    workbook->window_height = 9660;
 
     return workbook;
 
@@ -1997,8 +1989,7 @@ workbook_add_worksheet(lxw_workbook *self, const char *sheetname)
     lxw_worksheet *worksheet = NULL;
     lxw_worksheet_name *worksheet_name = NULL;
     lxw_error error;
-    lxw_worksheet_init_data init_data =
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    lxw_worksheet_init_data init_data = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     char *new_name = NULL;
 
     if (sheetname) {
@@ -2039,7 +2030,6 @@ workbook_add_worksheet(lxw_workbook *self, const char *sheetname)
     init_data.tmpdir = self->options.tmpdir;
     init_data.default_url_format = self->default_url_format;
     init_data.max_url_length = self->max_url_length;
-    init_data.use_1904_epoch = self->use_1904_epoch;
 
     /* Create a new worksheet object. */
     worksheet = lxw_worksheet_new(&init_data);
@@ -2083,8 +2073,7 @@ workbook_add_chartsheet(lxw_workbook *self, const char *sheetname)
     lxw_chartsheet *chartsheet = NULL;
     lxw_chartsheet_name *chartsheet_name = NULL;
     lxw_error error;
-    lxw_worksheet_init_data init_data =
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    lxw_worksheet_init_data init_data = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     char *new_name = NULL;
 
     if (sheetname) {
@@ -2862,28 +2851,4 @@ void
 workbook_read_only_recommended(lxw_workbook *self)
 {
     self->read_only = 2;
-}
-
-/*
- * Use the 1904 epoch for dates in the workbook.
- */
-void
-workbook_use_1904_epoch(lxw_workbook *self)
-{
-    self->use_1904_epoch = LXW_TRUE;
-}
-
-/*
- * Set the size of a workbook window.
- */
-void
-workbook_set_size(lxw_workbook *workbook, uint16_t width, uint16_t height)
-{
-    /* Convert the width/height to twips at 96 dpi. */
-    if (width)
-        workbook->window_width = width * 1440 / 96;
-
-    if (height)
-        workbook->window_height = height * 1440 / 96;
-
 }

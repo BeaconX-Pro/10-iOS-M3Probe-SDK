@@ -60,7 +60,7 @@
     [self.aboutIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(110);
-        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(40.f);
+        make.top.equalTo(self.view).offset(kTopBarHeight + 40.f);
         make.height.mas_equalTo(110);
     }];
     [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
