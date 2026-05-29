@@ -14,6 +14,7 @@
 #import "MKBaseCell.h"
 #import "MKBaseNavigationController.h"
 #import "MKBaseCollectionView.h"
+#import "MKCustomNavigationBar.h"
 #import "MKBaseTableView.h"
 #import "MKAddsHeader.h"
 #import "NSArray+MKAdd.h"

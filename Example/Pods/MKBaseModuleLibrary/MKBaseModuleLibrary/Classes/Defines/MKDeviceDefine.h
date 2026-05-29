@@ -2,6 +2,9 @@
  头文件说明：
  1、与设备有关的宏定义
  */
+
+#import <UIKit/UIKit.h>
+
 #pragma mark - *************************  block弱引用强引用  *************************
 //弱引用对象
 #define WS(weakSelf)          __weak __typeof(&*self)weakSelf = self;
@@ -52,165 +55,173 @@
 
 #pragma mark - *************************  硬件相关  *************************
 /** 获取屏幕尺寸、宽度、高度 */
-#define kScreenRect                 ([UIScreen mainScreen].bounds)            //屏幕frame
-#define kViewWidth                  ([UIScreen mainScreen].bounds.size.width)   //屏幕宽度
-#define kViewHeight                 ([UIScreen mainScreen].bounds.size.height)  //屏幕高度
+#define kScreenRect                 ([UIScreen mainScreen].bounds)
+#define kViewWidth                  ([UIScreen mainScreen].bounds.size.width)
+#define kViewHeight                 ([UIScreen mainScreen].bounds.size.height)
 
-#define kScreenMaxLength            (MAX(kViewWidth, kViewHeight))          //获取屏幕宽高最大者
-#define kScreenMinLength            (MIN(kViewWidth, kViewHeight))          //获取屏幕宽高最小者
+#define kScreenMaxLength            (MAX(kViewWidth, kViewHeight))
+#define kScreenMinLength            (MIN(kViewWidth, kViewHeight))
+
 
 #pragma mark - *************************  系统相关  *************************
 
 #define kAppDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
-#define kAppWindow ({ \
+
+#define kAppWindow \
+({ \
     UIWindow *topWindow = nil; \
-    if (@available(iOS 13.0, *)) { \
-        NSSet<UIScene *> *connectedScenes = [UIApplication sharedApplication].connectedScenes; \
-        UIWindowScene *activeScene = (UIWindowScene *)connectedScenes.anyObject; \
-        topWindow = activeScene.windows.lastObject; \
-    } else { \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
-        topWindow = [[UIApplication sharedApplication].windows lastObject]; \
-_Pragma("clang diagnostic pop") \
+    for (UIWindowScene *scene in [UIApplication sharedApplication].connectedScenes) { \
+        if (scene.activationState == UISceneActivationStateForegroundActive) { \
+            topWindow = scene.windows.firstObject; \
+            break; \
+        } \
     } \
     topWindow; \
 })
 
-#define kAppRootController ({ \
+#define kAppRootController \
+({ \
     UIViewController *rootController = nil; \
-    if (@available(iOS 15.0, *)) { \
-        UIWindowScene *activeScene = nil; \
-        for (UIWindowScene *scene in UIApplication.sharedApplication.connectedScenes) { \
-            if (scene.activationState == UISceneActivationStateForegroundActive) { \
-                activeScene = scene; \
-                break; \
-            } \
-        } \
-        if (activeScene) { \
-            rootController = activeScene.windows.firstObject.rootViewController; \
-        } \
-    } else { \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
-        rootController = [UIApplication sharedApplication].windows.firstObject.rootViewController; \
-_Pragma("clang diagnostic pop") \
+    UIWindow *window = kAppWindow; \
+    if (window) { \
+        rootController = window.rootViewController; \
     } \
     rootController; \
 })
 
 /** 获取系统版本 */
-#define kSystemVersionString ({ \
-    NSString *systemVersion = nil; \
-    if (@available(iOS 15.0, *)) { \
-        systemVersion = [NSProcessInfo processInfo].operatingSystemVersionString; \
-    } else { \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
-        systemVersion = [[UIDevice currentDevice] systemVersion]; \
-_Pragma("clang diagnostic pop") \
-    } \
-    systemVersion; \
-})
+#define kSystemVersionString ([NSProcessInfo processInfo].operatingSystemVersionString)
 
 /** 获取APP名称 */
-
-#define kAppName ({ \
-    NSString *appName = nil; \
-    if (@available(iOS 15.0, *)) { \
-        appName = [NSBundle mainBundle].infoDictionary[@"CFBundleDisplayName"]; \
-        if (!appName) { \
-            appName = [NSBundle mainBundle].infoDictionary[@"CFBundleName"]; \
-        } \
-    } else { \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
-        appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"]; \
-_Pragma("clang diagnostic pop") \
-    } \
-    appName; \
-})
+#define kAppName ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"])
 
 /** 获取APP版本 */
-#define kAppVersion ({ \
-    NSString *appVersion = nil; \
-    if (@available(iOS 15.0, *)) { \
-        appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]; \
-    } else { \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
-        appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; \
-_Pragma("clang diagnostic pop") \
-    } \
-    appVersion; \
-})
+#define kAppVersion ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"])
 
-#define iOS(x) ({ \
+/** 获取APP Build版本 */
+#define kAppBuildVersion ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"])
+
+#define iOS(version) ({ \
     BOOL isIOS = NO; \
-    if (@available(iOS x, *)) { \
+    if (@available(iOS version, *)) { \
         isIOS = YES; \
     } \
     isIOS; \
 })
 
 //获取系统时间戳
-#define  kSystemTimeStamp [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]]
+#define kSystemTimeStamp [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]]
+
 
 #pragma mark - *************************  状态栏、导航栏、标签栏相关  *************************
 
 /*
-    状态栏
+    状态栏高度 - 动态获取
  */
-
-#define kStatusBarHeight kAppWindow.windowScene.statusBarManager.statusBarFrame.size.height
+#define kStatusBarHeight \
+({ \
+    CGFloat height = 0; \
+    for (UIWindowScene *scene in [UIApplication sharedApplication].connectedScenes) { \
+        if (scene.activationState == UISceneActivationStateForegroundActive) { \
+            height = scene.statusBarManager.statusBarFrame.size.height; \
+            break; \
+        } \
+    } \
+    if (height == 0) { \
+        UIWindow *window = kAppWindow; \
+        if (window) { \
+            height = window.safeAreaInsets.top; \
+        } \
+    } \
+    if (height == 0) { \
+        height = 47; \
+    } \
+    height; \
+})
 
 /**
- *  导航栏
+ *  导航栏高度 - iOS 14 为 44，iOS 15+ 为 54
  */
-#define kNavigationBarHeight [[UINavigationController alloc] init].navigationBar.frame.size.height
+#define kNavigationBarHeight \
+({ \
+    CGFloat height = 44; \
+    if (@available(iOS 15.0, *)) { \
+        height = 54; \
+    } \
+    height; \
+})
 
 /**
- *  标签栏(底部)
+ *  导航栏高度（精确获取当前控制器导航栏的实际高度）
  */
-#define kTabBarHeight [[UITabBarController alloc] init].tabBar.frame.size.height
-
-
-
+#define kNavigationBarHeightExact \
+({ \
+    CGFloat height = 44; \
+    UIViewController *rootVC = kAppRootController; \
+    if (rootVC.navigationController) { \
+        height = rootVC.navigationController.navigationBar.frame.size.height; \
+    } \
+    if (height <= 0) { \
+        if (@available(iOS 15.0, *)) { \
+            height = 54; \
+        } else { \
+            height = 44; \
+        } \
+    } \
+    height; \
+})
 
 /*
-    顶部导航栏+导航栏高度
+    顶部总高度（状态栏 + 导航栏）
  */
 #define kTopBarHeight (kStatusBarHeight + kNavigationBarHeight)
 
 /**
- *  竖屏底部安全区域
+ *  底部安全区域高度
  */
-#define kSafeAreaHeight ({\
-    CGFloat bottom=0.0;\
-    if (@available(iOS 11.0, *)) {\
-        bottom = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom;\
-    } else { \
-        bottom=0;\
-    }\
-    (bottom);\
+#define kSafeAreaHeight \
+({ \
+    CGFloat bottom = 0; \
+    UIWindow *window = kAppWindow; \
+    if (window) { \
+        bottom = window.safeAreaInsets.bottom; \
+    } \
+    bottom; \
 })
+
+/**
+ *  标签栏(底部)高度 - 无刘海屏为 49，有刘海屏为 83
+ */
+#define kTabBarHeight \
+({ \
+    CGFloat height = 49; \
+    if (kSafeAreaHeight > 0) { \
+        height = 83; \
+    } \
+    height; \
+})
+
+/**
+ *  顶部安全区域高度（状态栏高度）
+ */
+#define kSafeAreaTopHeight (kStatusBarHeight)
 
 
 #pragma mark - *************************  本地文档相关  *************************
 /** 获取Documents目录 */
-#define kDocumentsPath          ([NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject])
+#define kDocumentsPath ([NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject])
 
 /** 获得Documents下指定文件名的文件路径 */
-#define kFilePath(filename)     ([[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:filename])
+#define kFilePath(filename) ([kDocumentsPath stringByAppendingPathComponent:filename])
 
 /** 获取Library目录 */
-#define kLibraryPath            ([NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject])
+#define kLibraryPath ([NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject])
 
 /** 获取Caches目录 */
-#define kCachesPath             ([NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject])
+#define kCachesPath ([NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject])
 
 /** 获取Tmp目录 */
-#define kTmpPath                 NSTemporaryDirectory()
+#define kTmpPath NSTemporaryDirectory()
 
 #ifndef moko_dispatch_main_safe
 #define moko_dispatch_main_safe(block)\
@@ -220,30 +231,36 @@ if (strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), dispatch_queu
     dispatch_async(dispatch_get_main_queue(), block);\
 }
 #endif
+
+
 #pragma mark - **************************  字体相关  *********************************
-#define MKFont(a) ({  \
-    UIFont *font = [UIFont fontWithName:@"Helvetica-Bold" size:a];  \
-    if (!font) {    \
+#define MKFont(a) \
+({ \
+    UIFont *font = [UIFont fontWithName:@"Helvetica-Bold" size:a]; \
+    if (!font) { \
         font = [UIFont systemFontOfSize:a]; \
-    }   \
-    font;   \
+    } \
+    font; \
 })
 
+#define MKLightFont(a) ([UIFont systemFontOfSize:a weight:UIFontWeightLight])
+#define MKMediumFont(a) ([UIFont systemFontOfSize:a weight:UIFontWeightMedium])
+#define MKBoldFont(a) ([UIFont boldSystemFontOfSize:a])
+
+
 #pragma mark - **************************  国际化相关  *********************************
-#define LS(a)                           NSLocalizedString(a, nil)
+#define LS(a) NSLocalizedString(a, nil)
 
 //线的高度
-#define CUTTING_LINE_HEIGHT             ([[UIScreen mainScreen] scale] == 2.f ? 0.5 : 0.34)
+#define CUTTING_LINE_HEIGHT (1.0 / [UIScreen mainScreen].scale)
 
-//图片的宏定义,注意该方法只对取mainBundle下面的图片有效，如果是自建的bundle，则该方法取不到。
-#define LOADIMAGE(file,ext) ({ \
-    NSBundle *bundle = [NSBundle mainBundle]; \
-    NSString *imageName = [NSString stringWithFormat:@"%@%@", file, \
-                           (UIScreen.mainScreen.nativeScale > 2.0) ? @"@3x" : @"@2x"]; \
-    UIImage *image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil]; \
+//图片的宏定义
+#define LOADIMAGE(file, ext) \
+({ \
+    UIImage *image = [UIImage imageNamed:file]; \
     if (!image) { \
-        NSString *imagePath = [bundle pathForResource:file ofType:ext]; \
-        image = [UIImage imageWithContentsOfFile:imagePath]; \
+        NSString *path = [[NSBundle mainBundle] pathForResource:file ofType:ext]; \
+        image = [UIImage imageWithContentsOfFile:path]; \
     } \
     image; \
 })
@@ -253,10 +270,21 @@ if (strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), dispatch_queu
  bundleClassName:调用该方法的对象在bundle里面的名称
  imageName:icon名称，xxx.png
  */
-#define LOADICON(podLibName,bundleClassName,imageName) \
+#define LOADICON(podLibName, bundleClassName, imageName) \
 ({\
-NSBundle *bundle = [NSBundle bundleForClass:NSClassFromString(bundleClassName)];\
-NSString *bundlePath = [bundle pathForResource:podLibName ofType:@"bundle"];\
-UIImage *image = [UIImage imageWithContentsOfFile:[bundlePath stringByAppendingPathComponent:imageName]];\
-(image);\
-})\
+    NSBundle *bundle = [NSBundle bundleForClass:NSClassFromString(bundleClassName)];\
+    NSString *bundlePath = [bundle pathForResource:podLibName ofType:@"bundle"];\
+    UIImage *image = [UIImage imageWithContentsOfFile:[bundlePath stringByAppendingPathComponent:imageName]];\
+    image;\
+})
+
+
+#pragma mark - **************************  设备判断  *********************************
+/** 是否是刘海屏（有安全区域） */
+#define kIsBangsScreen (kSafeAreaHeight > 0)
+
+/** 是否是iPad */
+#define kIsPad (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+
+/** 是否是iPhone */
+#define kIsPhone (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)

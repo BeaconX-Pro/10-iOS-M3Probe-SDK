@@ -8,91 +8,85 @@ PODS:
   - Masonry (1.1.0)
   - MJRefresh (3.7.9)
   - MKBaseBleModule (1.1.4)
-  - MKBaseModuleLibrary (2.2.6):
+  - MKBaseModuleLibrary (2.2.7):
     - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Base (= 2.2.6)
-    - MKBaseModuleLibrary/Category (= 2.2.6)
-    - MKBaseModuleLibrary/Defines (= 2.2.6)
-    - MKBaseModuleLibrary/Tools (= 2.2.6)
+    - MKBaseModuleLibrary/Base (= 2.2.7)
+    - MKBaseModuleLibrary/Category (= 2.2.7)
+    - MKBaseModuleLibrary/Defines (= 2.2.7)
+    - MKBaseModuleLibrary/Tools (= 2.2.7)
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Base (2.2.6):
+  - MKBaseModuleLibrary/Base (2.2.7):
     - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Base/Controller (= 2.2.6)
-    - MKBaseModuleLibrary/Base/MKBaseCell (= 2.2.6)
-    - MKBaseModuleLibrary/Base/NavigationController (= 2.2.6)
-    - MKBaseModuleLibrary/Base/View (= 2.2.6)
+    - MKBaseModuleLibrary/Base/Controller (= 2.2.7)
+    - MKBaseModuleLibrary/Base/MKBaseCell (= 2.2.7)
+    - MKBaseModuleLibrary/Base/NavigationController (= 2.2.7)
+    - MKBaseModuleLibrary/Base/View (= 2.2.7)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Base/Controller (2.2.6):
+  - MKBaseModuleLibrary/Base/Controller (2.2.7):
     - Masonry (~> 1.1)
+    - MKBaseModuleLibrary/Base/View/NavigationBar
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Base/MKBaseCell (2.2.6):
-    - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Category
-    - MKBaseModuleLibrary/Defines
-    - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Base/NavigationController (2.2.6):
+  - MKBaseModuleLibrary/Base/MKBaseCell (2.2.7):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Base/View (2.2.6):
-    - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Base/View/CollectionView (= 2.2.6)
-    - MKBaseModuleLibrary/Base/View/TableView (= 2.2.6)
-    - MKBaseModuleLibrary/Category
-    - MKBaseModuleLibrary/Defines
-    - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Base/View/CollectionView (2.2.6):
+  - MKBaseModuleLibrary/Base/NavigationController (2.2.7):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Base/View/TableView (2.2.6):
+  - MKBaseModuleLibrary/Base/View (2.2.7):
+    - Masonry (~> 1.1)
+    - MKBaseModuleLibrary/Base/View/CollectionView (= 2.2.7)
+    - MKBaseModuleLibrary/Base/View/NavigationBar (= 2.2.7)
+    - MKBaseModuleLibrary/Base/View/TableView (= 2.2.7)
+    - MKBaseModuleLibrary/Category
+    - MKBaseModuleLibrary/Defines
+    - Toast (~> 4.1)
+  - MKBaseModuleLibrary/Base/View/CollectionView (2.2.7):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Category (2.2.6):
+  - MKBaseModuleLibrary/Base/View/NavigationBar (2.2.7):
+    - Masonry (~> 1.1)
+    - MKBaseModuleLibrary/Category
+    - MKBaseModuleLibrary/Defines
+    - Toast (~> 4.1)
+  - MKBaseModuleLibrary/Base/View/TableView (2.2.7):
+    - Masonry (~> 1.1)
+    - MKBaseModuleLibrary/Category
+    - MKBaseModuleLibrary/Defines
+    - Toast (~> 4.1)
+  - MKBaseModuleLibrary/Category (2.2.7):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Defines
     - MKBaseModuleLibrary/Tools/MKClassInfo
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Defines (2.2.6):
+  - MKBaseModuleLibrary/Defines (2.2.7):
     - Masonry (~> 1.1)
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Tools (2.2.6):
+  - MKBaseModuleLibrary/Tools (2.2.7):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Defines
-    - MKBaseModuleLibrary/Tools/MKClassInfo (= 2.2.6)
-    - MKBaseModuleLibrary/Tools/MKExcelManager (= 2.2.6)
+    - MKBaseModuleLibrary/Tools/MKClassInfo (= 2.2.7)
+    - MKBaseModuleLibrary/Tools/MKExcelManager (= 2.2.7)
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Tools/MKClassInfo (2.2.6):
+  - MKBaseModuleLibrary/Tools/MKClassInfo (2.2.7):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
-  - MKBaseModuleLibrary/Tools/MKExcelManager (2.2.6):
+  - MKBaseModuleLibrary/Tools/MKExcelManager (2.2.7):
     - libxlsxwriter (~> 1.1.7)
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Defines
     - SSZipArchive (~> 2.4.0)
     - Toast (~> 4.1)
-    - WRNavigationBar (~> 1.4)
   - MKBeaconXCustomUI (1.0.10):
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI/Defines (= 1.0.10)
@@ -609,49 +603,18 @@ PODS:
     - MJRefresh (~> 3.7.5)
     - MKBaseModuleLibrary
     - MKCustomUIModule/View/MKTextField
-  - MKMThreeProbe (0.0.1):
-    - MKMThreeProbe/ConnectManager (= 0.0.1)
-    - MKMThreeProbe/CTMediator (= 0.0.1)
-    - MKMThreeProbe/Functions (= 0.0.1)
-    - MKMThreeProbe/SDK (= 0.0.1)
-    - MKMThreeProbe/Target (= 0.0.1)
-  - MKMThreeProbe/ConnectManager (0.0.1):
+  - MKMThreeProbe (0.0.2):
+    - MKMThreeProbe/ConnectManager (= 0.0.2)
+    - MKMThreeProbe/CTMediator (= 0.0.2)
+    - MKMThreeProbe/Functions (= 0.0.2)
+    - MKMThreeProbe/SDK (= 0.0.2)
+    - MKMThreeProbe/Target (= 0.0.2)
+  - MKMThreeProbe/ConnectManager (0.0.2):
     - MKBaseModuleLibrary
     - MKMThreeProbe/SDK
-  - MKMThreeProbe/CTMediator (0.0.1):
+  - MKMThreeProbe/CTMediator (0.0.2):
     - CTMediator
-  - MKMThreeProbe/Functions (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/AboutPage (= 0.0.1)
-    - MKMThreeProbe/Functions/AdvConfigPage (= 0.0.1)
-    - MKMThreeProbe/Functions/ProbePage (= 0.0.1)
-    - MKMThreeProbe/Functions/QuickSwitchPage (= 0.0.1)
-    - MKMThreeProbe/Functions/ScanPage (= 0.0.1)
-    - MKMThreeProbe/Functions/SensorConfigPage (= 0.0.1)
-    - MKMThreeProbe/Functions/SensorPage (= 0.0.1)
-    - MKMThreeProbe/Functions/SettingPage (= 0.0.1)
-    - MKMThreeProbe/Functions/TabBarPage (= 0.0.1)
-    - MKMThreeProbe/Functions/UpdatePage (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/AboutPage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/AboutPage/Controller (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/AboutPage/Controller (0.0.1):
+  - MKMThreeProbe/Functions (0.0.2):
     - HHTransition
     - iOSDFULibrary (= 4.13.0)
     - MKBaseModuleLibrary
@@ -661,333 +624,13 @@ PODS:
     - MKMThreeProbe/CTMediator
     - MKMThreeProbe/SDK
     - MLInputDodger
-  - MKMThreeProbe/Functions/AdvConfigPage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/AdvConfigPage/Controller (= 0.0.1)
-    - MKMThreeProbe/Functions/AdvConfigPage/Model (= 0.0.1)
-    - MKMThreeProbe/Functions/AdvConfigPage/View (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/AdvConfigPage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/AdvConfigPage/Model
-    - MKMThreeProbe/Functions/AdvConfigPage/View
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/AdvConfigPage/Model (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/AdvConfigPage/View (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/ProbePage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/ProbePage/Controller (= 0.0.1)
-    - MKMThreeProbe/Functions/ProbePage/View (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/ProbePage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/ProbePage/View
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/ProbePage/View (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/QuickSwitchPage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/QuickSwitchPage/Controller (= 0.0.1)
-    - MKMThreeProbe/Functions/QuickSwitchPage/Model (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/QuickSwitchPage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/QuickSwitchPage/Model
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/QuickSwitchPage/Model (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/ScanPage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/ScanPage/Controller (= 0.0.1)
-    - MKMThreeProbe/Functions/ScanPage/Model (= 0.0.1)
-    - MKMThreeProbe/Functions/ScanPage/View (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/ScanPage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/AboutPage/Controller
-    - MKMThreeProbe/Functions/ScanPage/Model
-    - MKMThreeProbe/Functions/ScanPage/View
-    - MKMThreeProbe/Functions/TabBarPage/Controller
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/ScanPage/Model (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/ScanPage/View (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/ScanPage/Model
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/SensorConfigPage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/SensorConfigPage/Controller (= 0.0.1)
-    - MKMThreeProbe/Functions/SensorConfigPage/Model (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/SensorConfigPage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/SensorConfigPage/Model
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/SensorConfigPage/Model (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/SensorPage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/SensorPage/Controller (= 0.0.1)
-    - MKMThreeProbe/Functions/SensorPage/View (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/SensorPage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/ProbePage
-    - MKMThreeProbe/Functions/SensorPage/View
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/SensorPage/View (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/SettingPage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/SettingPage/Controller (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/SettingPage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/AdvConfigPage/Controller
-    - MKMThreeProbe/Functions/QuickSwitchPage/Controller
-    - MKMThreeProbe/Functions/SensorConfigPage/Controller
-    - MKMThreeProbe/Functions/UpdatePage/Controller
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/TabBarPage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/TabBarPage/Controller (= 0.0.1)
-    - MKMThreeProbe/Functions/TabBarPage/Model (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/TabBarPage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/SensorPage/Controller
-    - MKMThreeProbe/Functions/SettingPage/Controller
-    - MKMThreeProbe/Functions/TabBarPage/Model
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/TabBarPage/Model (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/UpdatePage (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/UpdatePage/Controller (= 0.0.1)
-    - MKMThreeProbe/Functions/UpdatePage/Model (= 0.0.1)
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/UpdatePage/Controller (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/Functions/UpdatePage/Model
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/Functions/UpdatePage/Model (0.0.1):
-    - HHTransition
-    - iOSDFULibrary (= 4.13.0)
-    - MKBaseModuleLibrary
-    - MKBeaconXCustomUI
-    - MKCustomUIModule
-    - MKMThreeProbe/ConnectManager
-    - MKMThreeProbe/CTMediator
-    - MKMThreeProbe/SDK
-    - MLInputDodger
-  - MKMThreeProbe/SDK (0.0.1):
+  - MKMThreeProbe/SDK (0.0.2):
     - MKBaseBleModule
-  - MKMThreeProbe/Target (0.0.1):
+  - MKMThreeProbe/Target (0.0.2):
     - MKMThreeProbe/Functions
   - MLInputDodger (1.5.2)
   - SSZipArchive (2.4.3)
   - Toast (4.1.1)
-  - WRNavigationBar (1.4.0)
   - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
@@ -1009,7 +652,6 @@ SPEC REPOS:
     - MLInputDodger
     - SSZipArchive
     - Toast
-    - WRNavigationBar
     - ZIPFoundation
 
 EXTERNAL SOURCES:
@@ -1025,14 +667,13 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
-  MKBaseModuleLibrary: 42c50100661a5b394e396fbffb402350786dbc55
+  MKBaseModuleLibrary: b5196f9bf0ddfe4beee6395183c3f616cd996ffd
   MKBeaconXCustomUI: 23e048b00d8caa8b3599bbb70bbe933804c4d361
   MKCustomUIModule: 6304b13cf253c678c46bb6e1ec3bd2c3bb0f0a37
-  MKMThreeProbe: 8214be417f0f6c82a247cd5fb18004510ff663db
+  MKMThreeProbe: 403f77667357eb48489cb2821c1e8d2805bd1a89
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
-  WRNavigationBar: 10bfdf96addf14d640d07c2ef08a029c18d8af10
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
 PODFILE CHECKSUM: 47b23903c2b90d4d7c146ef383ff9342bd63ffb8
