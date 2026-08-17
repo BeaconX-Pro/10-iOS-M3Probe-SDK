@@ -51,20 +51,83 @@
     self.backgroundView.backgroundColor = NAVBAR_COLOR_MACROS;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self updateFrame];
+}
+
 - (void)updateFrame {
     CGFloat top = kStatusBarHeight;
-    CGFloat margin = 0;
+    CGFloat leftMargin = 12;   // 左边距
+    CGFloat rightMargin = 12;  // 右边距
     CGFloat buttonHeight = kNavigationBarHeight;
-    CGFloat buttonWidth = 44;
-    CGFloat titleLabelHeight = kNavigationBarHeight;
-    CGFloat titleLabelWidth = kViewWidth - 120;
+    
+    // 动态计算按钮宽度
+    CGFloat leftButtonWidth = [self calculateButtonWidth:self.leftButton];
+    CGFloat rightButtonWidth = [self calculateButtonWidth:self.rightButton];
+    
+    // 限制按钮宽度范围（最小44，最大120）
+    leftButtonWidth = MAX(44, MIN(120, leftButtonWidth));
+    rightButtonWidth = MAX(44, MIN(120, rightButtonWidth));
+    
+    // 计算标题可用宽度
+    CGFloat titleLabelMaxWidth = kViewWidth - leftButtonWidth - rightButtonWidth - leftMargin - rightMargin - 10;
+    CGFloat titleLabelWidth = MIN(titleLabelMaxWidth, 200);
     
     self.backgroundView.frame = self.bounds;
     self.backgroundImageView.frame = self.bounds;
-    self.leftButton.frame = CGRectMake(margin, top, buttonWidth, buttonHeight);
-    self.rightButton.frame = CGRectMake(kViewWidth - buttonWidth - margin, top, buttonWidth, buttonHeight);
-    self.titleLable.frame = CGRectMake((kViewWidth - titleLabelWidth) / 2, top, titleLabelWidth, titleLabelHeight);
+    
+    // 左按钮（距离左边 leftMargin）
+    self.leftButton.frame = CGRectMake(leftMargin, top, leftButtonWidth, buttonHeight);
+    
+    // 右按钮（距离右边 rightMargin）
+    self.rightButton.frame = CGRectMake(kViewWidth - rightButtonWidth - rightMargin, top, rightButtonWidth, buttonHeight);
+    
+    // 标题居中
+    self.titleLable.frame = CGRectMake(
+        (kViewWidth - titleLabelWidth) / 2,
+        top,
+        titleLabelWidth,
+        buttonHeight
+    );
+    
     self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - CUTTING_LINE_HEIGHT, kViewWidth, CUTTING_LINE_HEIGHT);
+}
+
+// 计算按钮实际需要的宽度
+- (CGFloat)calculateButtonWidth:(UIButton *)button {
+    NSString *title = [button titleForState:UIControlStateNormal];
+    UIImage *image = [button imageForState:UIControlStateNormal];
+    
+    CGFloat width = 44; // 最小宽度
+    UIFont *font = button.titleLabel.font ?: [UIFont systemFontOfSize:16];
+    
+    // 如果有文字，计算文字宽度
+    if (title.length > 0) {
+        NSDictionary *attributes = @{NSFontAttributeName: font};
+        CGSize textSize = [title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 44)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:attributes
+                                              context:nil].size;
+        width = textSize.width + 20; // 文字宽度 + 左右内边距
+    }
+    
+    // 如果有图片，且没有文字，增加图片宽度
+    if (image && title.length == 0) {
+        width = image.size.width + 20;
+    }
+    
+    // 如果同时有图片和文字
+    if (title.length > 0 && image) {
+        NSDictionary *attributes = @{NSFontAttributeName: font};
+        CGSize textSize = [title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 44)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:attributes
+                                              context:nil].size;
+        width = textSize.width + image.size.width + 24;
+    }
+    
+    return width;
 }
 
 #pragma mark - Public Methods
@@ -89,6 +152,7 @@
     _title = title;
     self.titleLable.hidden = NO;
     self.titleLable.text = _title;
+    [self setNeedsLayout];
 }
 
 - (void)setTitleLabelColor:(UIColor *)titleLabelColor {
@@ -99,6 +163,7 @@
 - (void)setTitleLabelFont:(UIFont *)titleLabelFont {
     _titleLabelFont = titleLabelFont;
     self.titleLable.font = _titleLabelFont;
+    [self setNeedsLayout];
 }
 
 - (void)setBarBackgroundColor:(UIColor *)barBackgroundColor {
@@ -121,6 +186,7 @@
         _leftButton = [[UIButton alloc] init];
         _leftButton.imageView.contentMode = UIViewContentModeCenter;
         [_leftButton setTitleColor:COLOR_WHITE_MACROS forState:UIControlStateNormal];
+        _leftButton.titleLabel.font = MKFont(15.f);
         
         // 修复白色圆环
         _leftButton.backgroundColor = [UIColor clearColor];
@@ -136,6 +202,8 @@
         _rightButton = [[UIButton alloc] init];
         _rightButton.imageView.contentMode = UIViewContentModeCenter;
         [_rightButton setTitleColor:COLOR_WHITE_MACROS forState:UIControlStateNormal];
+        _rightButton.titleLabel.font = MKFont(15.f);
+        
         // 修复白色圆环
         _rightButton.backgroundColor = [UIColor clearColor];
         if (@available(iOS 15.0, *)) {

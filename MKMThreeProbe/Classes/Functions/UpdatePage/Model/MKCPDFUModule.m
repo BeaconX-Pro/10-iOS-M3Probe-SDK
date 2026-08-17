@@ -12,7 +12,7 @@
 
 #import "MKCPCentralManager.h"
 
-@import iOSDFULibrary;
+@import NordicDFU;
 
 static NSString *const dfuUpdateDomain = @"com.moko.dfuUpdateDomain";
 

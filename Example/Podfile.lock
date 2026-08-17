@@ -2,86 +2,84 @@ PODS:
   - CircleProgressBar (0.32)
   - CTMediator (48)
   - HHTransition (3.1.2)
-  - iOSDFULibrary (4.13.0):
-    - ZIPFoundation (= 0.9.11)
   - libxlsxwriter (1.1.9)
   - Masonry (1.1.0)
   - MJRefresh (3.7.9)
   - MKBaseBleModule (1.1.4)
-  - MKBaseModuleLibrary (2.2.7):
+  - MKBaseModuleLibrary (2.2.8):
     - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Base (= 2.2.7)
-    - MKBaseModuleLibrary/Category (= 2.2.7)
-    - MKBaseModuleLibrary/Defines (= 2.2.7)
-    - MKBaseModuleLibrary/Tools (= 2.2.7)
+    - MKBaseModuleLibrary/Base (= 2.2.8)
+    - MKBaseModuleLibrary/Category (= 2.2.8)
+    - MKBaseModuleLibrary/Defines (= 2.2.8)
+    - MKBaseModuleLibrary/Tools (= 2.2.8)
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Base (2.2.7):
+  - MKBaseModuleLibrary/Base (2.2.8):
     - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Base/Controller (= 2.2.7)
-    - MKBaseModuleLibrary/Base/MKBaseCell (= 2.2.7)
-    - MKBaseModuleLibrary/Base/NavigationController (= 2.2.7)
-    - MKBaseModuleLibrary/Base/View (= 2.2.7)
+    - MKBaseModuleLibrary/Base/Controller (= 2.2.8)
+    - MKBaseModuleLibrary/Base/MKBaseCell (= 2.2.8)
+    - MKBaseModuleLibrary/Base/NavigationController (= 2.2.8)
+    - MKBaseModuleLibrary/Base/View (= 2.2.8)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Base/Controller (2.2.7):
+  - MKBaseModuleLibrary/Base/Controller (2.2.8):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Base/View/NavigationBar
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Base/MKBaseCell (2.2.7):
+  - MKBaseModuleLibrary/Base/MKBaseCell (2.2.8):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Base/NavigationController (2.2.7):
+  - MKBaseModuleLibrary/Base/NavigationController (2.2.8):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Base/View (2.2.7):
+  - MKBaseModuleLibrary/Base/View (2.2.8):
     - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Base/View/CollectionView (= 2.2.7)
-    - MKBaseModuleLibrary/Base/View/NavigationBar (= 2.2.7)
-    - MKBaseModuleLibrary/Base/View/TableView (= 2.2.7)
+    - MKBaseModuleLibrary/Base/View/CollectionView (= 2.2.8)
+    - MKBaseModuleLibrary/Base/View/NavigationBar (= 2.2.8)
+    - MKBaseModuleLibrary/Base/View/TableView (= 2.2.8)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Base/View/CollectionView (2.2.7):
-    - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Category
-    - MKBaseModuleLibrary/Defines
-    - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Base/View/NavigationBar (2.2.7):
+  - MKBaseModuleLibrary/Base/View/CollectionView (2.2.8):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Base/View/TableView (2.2.7):
+  - MKBaseModuleLibrary/Base/View/NavigationBar (2.2.8):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Category (2.2.7):
+  - MKBaseModuleLibrary/Base/View/TableView (2.2.8):
+    - Masonry (~> 1.1)
+    - MKBaseModuleLibrary/Category
+    - MKBaseModuleLibrary/Defines
+    - Toast (~> 4.1)
+  - MKBaseModuleLibrary/Category (2.2.8):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Defines
     - MKBaseModuleLibrary/Tools/MKClassInfo
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Defines (2.2.7):
+  - MKBaseModuleLibrary/Defines (2.2.8):
     - Masonry (~> 1.1)
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Tools (2.2.7):
-    - Masonry (~> 1.1)
-    - MKBaseModuleLibrary/Defines
-    - MKBaseModuleLibrary/Tools/MKClassInfo (= 2.2.7)
-    - MKBaseModuleLibrary/Tools/MKExcelManager (= 2.2.7)
-    - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Tools/MKClassInfo (2.2.7):
+  - MKBaseModuleLibrary/Tools (2.2.8):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Defines
+    - MKBaseModuleLibrary/Tools/MKClassInfo (= 2.2.8)
+    - MKBaseModuleLibrary/Tools/MKExcelManager (= 2.2.8)
     - Toast (~> 4.1)
-  - MKBaseModuleLibrary/Tools/MKExcelManager (2.2.7):
+  - MKBaseModuleLibrary/Tools/MKClassInfo (2.2.8):
+    - Masonry (~> 1.1)
+    - MKBaseModuleLibrary/Defines
+    - Toast (~> 4.1)
+  - MKBaseModuleLibrary/Tools/MKExcelManager (2.2.8):
     - libxlsxwriter (~> 1.1.7)
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Defines
@@ -616,7 +614,6 @@ PODS:
     - CTMediator
   - MKMThreeProbe/Functions (0.0.2):
     - HHTransition
-    - iOSDFULibrary (= 4.13.0)
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKCustomUIModule
@@ -624,14 +621,17 @@ PODS:
     - MKMThreeProbe/CTMediator
     - MKMThreeProbe/SDK
     - MLInputDodger
+    - NordicDFU (= 4.16.0)
   - MKMThreeProbe/SDK (0.0.2):
     - MKBaseBleModule
   - MKMThreeProbe/Target (0.0.2):
     - MKMThreeProbe/Functions
   - MLInputDodger (1.5.2)
+  - NordicDFU (4.16.0):
+    - ZIPFoundation (= 0.9.19)
   - SSZipArchive (2.4.3)
   - Toast (4.1.1)
-  - ZIPFoundation (0.9.11)
+  - ZIPFoundation (0.9.19)
 
 DEPENDENCIES:
   - MKMThreeProbe (from `../`)
@@ -641,7 +641,6 @@ SPEC REPOS:
     - CircleProgressBar
     - CTMediator
     - HHTransition
-    - iOSDFULibrary
     - libxlsxwriter
     - Masonry
     - MJRefresh
@@ -650,6 +649,7 @@ SPEC REPOS:
     - MKBeaconXCustomUI
     - MKCustomUIModule
     - MLInputDodger
+    - NordicDFU
     - SSZipArchive
     - Toast
     - ZIPFoundation
@@ -662,19 +662,19 @@ SPEC CHECKSUMS:
   CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
   CTMediator: 3f3578b525b3a46a7a2f92a99922ec40363f4269
   HHTransition: 67c1bc632c4838e4eb28f07b9be1b927362ae07d
-  iOSDFULibrary: ae1bcb1cb921e6e3ff551755f6fdff1b77e07e15
   libxlsxwriter: b013eaa467bbf24336b71b6cac15a6fbaf4e613b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
-  MKBaseModuleLibrary: b5196f9bf0ddfe4beee6395183c3f616cd996ffd
+  MKBaseModuleLibrary: b57331db53cebd9c822ce5881ee84429088dc995
   MKBeaconXCustomUI: 23e048b00d8caa8b3599bbb70bbe933804c4d361
   MKCustomUIModule: 6304b13cf253c678c46bb6e1ec3bd2c3bb0f0a37
-  MKMThreeProbe: 403f77667357eb48489cb2821c1e8d2805bd1a89
+  MKMThreeProbe: dd3f81a2c8f3e167a0097d4e336616fd1e63afbf
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
+  NordicDFU: 116a4ec458945889f8e0e71759e03b23c39c3482
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
-  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
+  ZIPFoundation: b8c29ea7ae353b309bc810586181fd073cb3312c
 
 PODFILE CHECKSUM: 47b23903c2b90d4d7c146ef383ff9342bd63ffb8
 
