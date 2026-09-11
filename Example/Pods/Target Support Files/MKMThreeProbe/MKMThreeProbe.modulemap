@@ -1,0 +1,6 @@
+framework module MKMThreeProbe {
+  umbrella header "MKMThreeProbe-umbrella.h"
+
+  export *
+  module * { export * }
+}

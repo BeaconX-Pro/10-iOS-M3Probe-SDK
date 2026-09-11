@@ -1,0 +1,6 @@
+framework module Pods_MKMThreeProbe_Example {
+  umbrella header "Pods-MKMThreeProbe_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

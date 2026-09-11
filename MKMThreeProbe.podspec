@@ -9,7 +9,7 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'lovexiaoxia' => 'aadyx2007@163.com' }
   s.source           = { :git => 'https://github.com/BeaconX-Pro/10-iOS-M3Probe-SDK.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '14.0'
+  s.ios.deployment_target = '18.0'
   
   # ========== 资源文件 ==========
   s.resource_bundles = {
