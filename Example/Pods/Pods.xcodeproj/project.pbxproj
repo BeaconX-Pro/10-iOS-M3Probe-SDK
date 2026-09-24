@@ -6847,7 +6847,7 @@
 			};
 			name = Debug;
 		};
-		1B129C42CA2DABB84AF1DA1AC7919C3D /* adhoc */ = {
+		1252857656B765448616E6767BD269CF /* adhoc */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 50D0CE65F8FE58E579B5F95F1AB622AD /* MKBaseBleModule.release.xcconfig */;
 			buildSettings = {
@@ -6976,42 +6976,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		2065562B62BCD63F66E3D4FADB634248 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2138B1F3D1D405789114CF089974F43 /* MKBaseBleModule.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/MKBaseBleModule/MKBaseBleModule-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/MKBaseBleModule/MKBaseBleModule-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MKBaseBleModule/MKBaseBleModule.modulemap";
-				PRODUCT_MODULE_NAME = MKBaseBleModule;
-				PRODUCT_NAME = MKBaseBleModule;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		225F9CA6CD5F516F49A3B2CE90EC2F88 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -7665,43 +7629,6 @@
 			};
 			name = Debug;
 		};
-		6CF04C3E8967A25735D0A8A4B32676C0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50D0CE65F8FE58E579B5F95F1AB622AD /* MKBaseBleModule.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/MKBaseBleModule/MKBaseBleModule-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/MKBaseBleModule/MKBaseBleModule-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MKBaseBleModule/MKBaseBleModule.modulemap";
-				PRODUCT_MODULE_NAME = MKBaseBleModule;
-				PRODUCT_NAME = MKBaseBleModule;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		6ED4CCFA8162AC6F3BBD44BD6253DD84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B5294403A9A3CFD0799198EF3524517A /* MJRefresh.debug.xcconfig */;
@@ -7862,6 +7789,43 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		7D91ACE02B307D13E12A9A4EB29D0EE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50D0CE65F8FE58E579B5F95F1AB622AD /* MKBaseBleModule.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MKBaseBleModule/MKBaseBleModule-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/MKBaseBleModule/MKBaseBleModule-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MKBaseBleModule/MKBaseBleModule.modulemap";
+				PRODUCT_MODULE_NAME = MKBaseBleModule;
+				PRODUCT_NAME = MKBaseBleModule;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		8273F9906E96D9C6F0E84D89CC926EB2 /* adhoc */ = {
 			isa = XCBuildConfiguration;
@@ -8205,6 +8169,42 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		A9F95F4264A0381B7BDA00049F3D3CD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2138B1F3D1D405789114CF089974F43 /* MKBaseBleModule.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MKBaseBleModule/MKBaseBleModule-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/MKBaseBleModule/MKBaseBleModule-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MKBaseBleModule/MKBaseBleModule.modulemap";
+				PRODUCT_MODULE_NAME = MKBaseBleModule;
+				PRODUCT_NAME = MKBaseBleModule;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		AD9699FE22956FF1A86DBA860CC71C57 /* adhoc */ = {
 			isa = XCBuildConfiguration;
@@ -9358,9 +9358,9 @@
 		8079DE4264E40B027EFEE121F7BF327A /* Build configuration list for PBXNativeTarget "MKBaseBleModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1B129C42CA2DABB84AF1DA1AC7919C3D /* adhoc */,
-				2065562B62BCD63F66E3D4FADB634248 /* Debug */,
-				6CF04C3E8967A25735D0A8A4B32676C0 /* Release */,
+				1252857656B765448616E6767BD269CF /* adhoc */,
+				A9F95F4264A0381B7BDA00049F3D3CD4 /* Debug */,
+				7D91ACE02B307D13E12A9A4EB29D0EE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

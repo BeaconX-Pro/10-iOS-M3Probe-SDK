@@ -5,7 +5,7 @@ PODS:
   - libxlsxwriter (1.1.9)
   - Masonry (1.1.0)
   - MJRefresh (3.7.9)
-  - MKBaseBleModule (1.1.4)
+  - MKBaseBleModule (1.1.5)
   - MKBaseModuleLibrary (2.2.8):
     - Masonry (~> 1.1)
     - MKBaseModuleLibrary/Base (= 2.2.8)
@@ -665,7 +665,7 @@ SPEC CHECKSUMS:
   libxlsxwriter: b013eaa467bbf24336b71b6cac15a6fbaf4e613b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
-  MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
+  MKBaseBleModule: 68d556f6256df48d3764bc67f8c68193d9f88cca
   MKBaseModuleLibrary: b57331db53cebd9c822ce5881ee84429088dc995
   MKBeaconXCustomUI: 23e048b00d8caa8b3599bbb70bbe933804c4d361
   MKCustomUIModule: 6304b13cf253c678c46bb6e1ec3bd2c3bb0f0a37
