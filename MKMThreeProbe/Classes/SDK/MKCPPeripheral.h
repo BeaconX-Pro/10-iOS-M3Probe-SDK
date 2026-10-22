@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <MKBaseBleModule/MKBLEBaseDataProtocol.h>
+#import "MKBLEBaseDataProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -6,7 +6,7 @@
 //  Copyright © 2021 aadyx2007@163.com. All rights reserved.
 //
 
-#import <CTMediator/CTMediator.h>
+#import "CTMediator.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
