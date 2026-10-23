@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/MOKO-iOS-Base-Library/MKBaseBleModule.git", from: "1.1.6"),
-        .package(url: "https://github.com/MOKO-iOS-Base-Library/MKBaseModuleLibrary.git", from: "2.2.15"),
+        .package(url: "https://github.com/MOKO-iOS-Base-Library/MKBaseModuleLibrary.git", from: "2.2.18"),
         .package(url: "https://github.com/MOKO-iOS-Base-Library/MKCustomUIModule.git", from: "2.1.14"),
         .package(url: "https://github.com/MOKO-iOS-Base-Library/MKBeaconXCustomUI.git", from: "1.0.14"),
         .package(url: "https://github.com/nordicsemi/IOS-DFU-Library.git", from: "4.17.0"),
@@ -30,6 +30,11 @@ let package = Package(
                 .product(name: "NordicDFU", package: "IOS-DFU-Library"),
             ],
             path: "MKMThreeProbe",
+            exclude: [
+                "Classes/Vendor/CTMediator",
+                "Classes/Vendor/HHTransition",
+                "Classes/Vendor/MLInputDodger",
+            ],
             sources: ["Classes"],
             resources: [.process("Assets")],
             publicHeadersPath: "Classes/PublicHeaders",
