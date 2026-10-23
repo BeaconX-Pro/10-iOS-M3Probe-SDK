@@ -7,6 +7,12 @@ let package = Package(
         .iOS(.v18)
     ],
     products: [
+        // 客户二次开发使用：仅蓝牙 SDK 层，不包含任何 UI 页面
+        .library(
+            name: "MKMThreeProbeSDK",
+            targets: ["MKMThreeProbeSDK"]
+        ),
+        // 完整组件：SDK + 全部配置页面
         .library(
             name: "MKMThreeProbe",
             targets: ["MKMThreeProbe"]
@@ -21,8 +27,20 @@ let package = Package(
     ],
     targets: [
         .target(
+            name: "MKMThreeProbeSDK",
+            dependencies: [
+                "MKBaseBleModule",
+            ],
+            path: "MKMThreeProbe/Classes/SDK",
+            publicHeadersPath: ".",
+            linkerSettings: [
+                .linkedFramework("CoreBluetooth"),
+            ]
+        ),
+        .target(
             name: "MKMThreeProbe",
             dependencies: [
+                "MKMThreeProbeSDK",
                 "MKBaseBleModule",
                 "MKBaseModuleLibrary",
                 "MKCustomUIModule",
@@ -31,6 +49,7 @@ let package = Package(
             ],
             path: "MKMThreeProbe",
             exclude: [
+                "Classes/SDK",
                 "Classes/Vendor/CTMediator",
                 "Classes/Vendor/HHTransition",
                 "Classes/Vendor/MLInputDodger",
@@ -42,7 +61,6 @@ let package = Package(
                 .headerSearchPath("Classes"),
                 .headerSearchPath("Classes/ConnectManager"),
                 .headerSearchPath("Classes/CTMediator"),
-                .headerSearchPath("Classes/SDK"),
                 .headerSearchPath("Classes/Target"),
                 .headerSearchPath("Classes/Functions/AboutPage/Controller"),
                 .headerSearchPath("Classes/Functions/AdvConfigPage/Controller"),
