@@ -32,11 +32,15 @@ Developers can get the lock state of the current device by calling the `readLock
 
 ### Import to Project
 
-CocoaPods
+Swift Package Manager
 
-SDK is available through [CocoaPods](https://cocoapods.org).To install it, simply add the following line to your Podfile, and then import ` <MKMThreeProbe/MKCPSDK.h>` ：
+SDK is available through Swift Package Manager. To install it, add the following line to your Package.swift dependencies, and then import `<MKMThreeProbeSDK/MKCPSDK.h>` (SDK-only) or `<MKMThreeProbe/MKCPSDK.h>` (full component):
 
-**pod 'MKMThreeProbe/SDK'**
+```swift
+.package(url: "https://github.com/lovexiaoxia/MKMThreeProbe.git", from: "0.1.0")
+```
+
+Or add it via Xcode: File → Add Packages... and enter the repository URL.
 
 
 * <font color=#FF0000 face="黑体">!!!on iOS 10 and above, Apple add authority control of bluetooth, you need add the string to "info.plist" file of your project: Privacy - Bluetooth Peripheral Usage Description - "your description". as the screenshot below.</font>

@@ -1,0 +1,1 @@
+../../Classes/Functions/SensorConfigPage/Model/MKCPSensorConfigModel.h

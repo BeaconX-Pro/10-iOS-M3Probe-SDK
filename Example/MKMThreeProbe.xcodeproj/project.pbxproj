@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0098F0EC3064C787007B6D5B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0098F0EB3064C787007B6D5B /* SceneDelegate.m */; };
-		1EE82328574CC94838FA9903 /* Pods_MKMThreeProbe_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 213E350E8FC76AC7AC6D29EB /* Pods_MKMThreeProbe_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -36,8 +35,6 @@
 /* Begin PBXFileReference section */
 		0098F0EA3064C787007B6D5B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		0098F0EB3064C787007B6D5B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		213E350E8FC76AC7AC6D29EB /* Pods_MKMThreeProbe_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MKMThreeProbe_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F1552A1A5376980C79E3B53 /* Pods-MKMThreeProbe_Example.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKMThreeProbe_Example.adhoc.xcconfig"; path = "Target Support Files/Pods-MKMThreeProbe_Example/Pods-MKMThreeProbe_Example.adhoc.xcconfig"; sourceTree = "<group>"; };
 		4E21F0253558C5184B77D787 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* MKMThreeProbe_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKMThreeProbe_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -55,8 +52,6 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7D04A37A6CB9CE3BB271E4ED /* Pods-MKMThreeProbe_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKMThreeProbe_Example.debug.xcconfig"; path = "Target Support Files/Pods-MKMThreeProbe_Example/Pods-MKMThreeProbe_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		824CB45A9A16F4BF44E32A0D /* Pods-MKMThreeProbe_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKMThreeProbe_Example.release.xcconfig"; path = "Target Support Files/Pods-MKMThreeProbe_Example/Pods-MKMThreeProbe_Example.release.xcconfig"; sourceTree = "<group>"; };
 		893182C4C9A2BEFF712FCA4B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9BB5C07F62497B5462A0FAFE /* MKMThreeProbe.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MKMThreeProbe.podspec; path = ../MKMThreeProbe.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
@@ -69,7 +64,6 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				1EE82328574CC94838FA9903 /* Pods_MKMThreeProbe_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +108,6 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				213E350E8FC76AC7AC6D29EB /* Pods_MKMThreeProbe_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,9 +168,6 @@
 		F2D4F775AAC05D84D5F17B71 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7D04A37A6CB9CE3BB271E4ED /* Pods-MKMThreeProbe_Example.debug.xcconfig */,
-				824CB45A9A16F4BF44E32A0D /* Pods-MKMThreeProbe_Example.release.xcconfig */,
-				3F1552A1A5376980C79E3B53 /* Pods-MKMThreeProbe_Example.adhoc.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -189,15 +179,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "MKMThreeProbe_Example" */;
 			buildPhases = (
-				2EBFE0C89F695FAB805BBFDC /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				DD4D69A18EE120BB5854ECE8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			packageProductDependencies = (
+				AA0000000000000000000002 /* MKMThreeProbe */,
 			);
 			name = MKMThreeProbe_Example;
 			productName = MKMThreeProbe;
@@ -256,6 +247,9 @@
 			targets = (
 				6003F589195388D20070C39A /* MKMThreeProbe_Example */,
 				6003F5AD195388D20070C39A /* MKMThreeProbe_Tests */,
+			);
+			packageReferences = (
+				AA0000000000000000000001 /* XCLocalSwiftPackageReference ".." */,
 			);
 		};
 /* End PBXProject section */
@@ -452,7 +446,6 @@
 		};
 		00AA7CCB2C046DD800929955 /* adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F1552A1A5376980C79E3B53 /* Pods-MKMThreeProbe_Example.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R558LEUW2T;
@@ -567,7 +560,6 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D04A37A6CB9CE3BB271E4ED /* Pods-MKMThreeProbe_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R558LEUW2T;
@@ -585,7 +577,6 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 824CB45A9A16F4BF44E32A0D /* Pods-MKMThreeProbe_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R558LEUW2T;
@@ -678,6 +669,21 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+
+/* Begin XCLocalSwiftPackageReference section */
+		AA0000000000000000000001 /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA0000000000000000000002 /* MKMThreeProbe */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MKMThreeProbe;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* End XCConfigurationList section */
 	};
 	rootObject = 6003F582195388D10070C39A /* Project object */;
