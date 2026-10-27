@@ -56,11 +56,11 @@ let package = Package(
             ],
             sources: ["Classes"],
             resources: [.process("Assets")],
-            publicHeadersPath: "Classes/PublicHeaders",
             cSettings: [
                 .headerSearchPath("Classes"),
                 .headerSearchPath("Classes/ConnectManager"),
                 .headerSearchPath("Classes/CTMediator"),
+                .headerSearchPath("Classes/SDK"),
                 .headerSearchPath("Classes/Target"),
                 .headerSearchPath("Classes/Functions/AboutPage/Controller"),
                 .headerSearchPath("Classes/Functions/AdvConfigPage/Controller"),

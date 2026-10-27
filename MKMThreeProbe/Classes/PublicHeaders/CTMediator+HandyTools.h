@@ -1,1 +1,0 @@
-../Vendor/CTMediator/CTMediator+HandyTools_spm_wrapper.h

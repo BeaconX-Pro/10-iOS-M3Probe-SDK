@@ -1,1 +1,0 @@
-../../Classes/Functions/AdvConfigPage/View/MKCPAdvTxPowerCell.h
