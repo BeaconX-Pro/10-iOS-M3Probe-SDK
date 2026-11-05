@@ -1354,13 +1354,7 @@ echo "SUCCESS" &gt; "${SCRIPT_OUTPUT_FILE_0}"
 			<key>shellPath</key>
 			<string>/bin/zsh</string>
 			<key>shellScript</key>
-			<string>#!/bin/zsh
-# Moko deps auto-update (build-phase)
-SH="${SRCROOT}/../.moko_deps.sh"
-if [ -f "$SH" ]; then
-    /bin/bash "$SH" 2&gt;/dev/null
-fi
-exit 0</string>
+			<string>#!/bin/zsh\nREPO_ROOT="$(cd "$(dirname "$PROJECT_FILE_PATH")/.." &amp;&amp; pwd)"\nif [ -f "$REPO_ROOT/.moko_deps.sh" ]; then\n    "$REPO_ROOT/.moko_deps.sh"\nfi\nexit 0</string>
 		</dict>
 		<key>F2D4F775AAC05D84D5F17B71</key>
 		<dict>
